@@ -1,7 +1,5 @@
 package com.example.demoswagger.SQLServer;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,10 +7,7 @@ import lombok.Setter;
 @Setter
 public class DateFromDateTo {
 
-    @JsonFormat(pattern = "yyyy/MM/dd")
     private String dateFrom;
-
-    @JsonFormat(pattern = "yyyy/MM/dd")
     private String dateTo;
 
     public DateFromDateTo() {

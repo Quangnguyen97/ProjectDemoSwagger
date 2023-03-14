@@ -31,15 +31,15 @@ public class BanHangServiceImpl implements BanHangService {
             if (ResourceValid.StrIsError(dateFromDateTo.getDateFrom())) {
                 mDateFrom = "NULL";
             } else {
-                mDateFrom = dateFromDateTo.getDateFrom();
+                mDateFrom = "'" + dateFromDateTo.getDateFrom() + "'";
             }
             if (ResourceValid.StrIsError(dateFromDateTo.getDateTo())) {
                 mDateTo = "NULL";
             } else {
-                mDateTo = dateFromDateTo.getDateTo();
+                mDateTo = "'" + dateFromDateTo.getDateTo() + "'";
             }
 
-            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa '" + mDateFrom + "', '" + mDateTo + "'";
+            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
             return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(HangHoa.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());

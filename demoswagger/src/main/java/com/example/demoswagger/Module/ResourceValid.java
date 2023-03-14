@@ -44,7 +44,7 @@ public class ResourceValid {
 
     public static boolean ObjectIsError(typeOBJECT typeObject, Object Value) {
         try {
-            return StrIsError(String.valueOf((Value))) || TypeIsError(typeObject, Value);
+            return StrIsError(String.valueOf(Value)) || TypeIsError(typeObject, Value);
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

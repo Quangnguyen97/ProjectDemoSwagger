@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.DateFromDateTo;
+import com.example.demoswagger.SQLServer.DateFromDateToDto;
 import com.example.demoswagger.SQLServer.HangHoa;
 import com.example.demoswagger.SQLServer.BanHang.BanHangServiceImpl;
 
@@ -35,10 +36,11 @@ public class BanHangController {
     }
 
     @GetMapping("/banhang")
-    public ResponseEntity<ResponseDto> getBanHangHangHoa(@RequestBody @Valid DateFromDateTo dateFromDateTo) {
+    public ResponseEntity<ResponseDto> getBanHangHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = banHangServiceImpl.getListBanHang(dateFromDateTo);
+            List<HangHoa> listBanHangHangHoa = banHangServiceImpl
+                    .getListBanHang(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
