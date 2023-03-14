@@ -39,7 +39,7 @@ public class BanHangServiceImpl implements BanHangService {
                 mDateTo = dateFromDateTo.getDateTo();
             }
 
-            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
+            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa '" + mDateFrom + "', '" + mDateTo + "'";
             return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(HangHoa.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
