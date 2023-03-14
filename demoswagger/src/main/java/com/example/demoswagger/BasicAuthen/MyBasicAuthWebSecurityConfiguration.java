@@ -19,7 +19,7 @@ import com.example.demoswagger.Module.*;
 public class MyBasicAuthWebSecurityConfiguration {
 
     @Autowired
-    private MyBasicAuthenticationProvider myBasicAuthenticationProvider;
+    private MyBasicAuthenticationProvider authenticationProvider;
 
     @Autowired
     private MyBasicAuthenticationEntryPoint authenticationEntryPoint;
@@ -28,7 +28,7 @@ public class MyBasicAuthWebSecurityConfiguration {
     public void configureGlobal(AuthenticationManagerBuilder authentication) throws Exception {
         try {
             PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-            authentication.authenticationProvider(myBasicAuthenticationProvider);
+            authentication.authenticationProvider(authenticationProvider);
             authentication
                     .inMemoryAuthentication()
                     .withUser("admin")
@@ -40,8 +40,7 @@ public class MyBasicAuthWebSecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity)
-            throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         try {
             httpSecurity
                     .csrf().disable()
