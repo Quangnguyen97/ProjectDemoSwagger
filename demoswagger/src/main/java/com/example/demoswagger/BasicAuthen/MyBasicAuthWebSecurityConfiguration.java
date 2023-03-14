@@ -31,8 +31,8 @@ public class MyBasicAuthWebSecurityConfiguration {
             authentication.authenticationProvider(authenticationProvider);
             authentication
                     .inMemoryAuthentication()
-                    .withUser("admin")
-                    .password(encoder.encode("123456"))
+                    .withUser("administrator")
+                    .password(encoder.encode("1408199720061996"))
                     .authorities("ROLE_ADMIN");
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
