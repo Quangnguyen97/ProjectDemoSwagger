@@ -110,7 +110,7 @@ public class HangHoaController {
         }
     }
 
-    @PostMapping("/HangHoa/NhapTra")
+    @PostMapping("/HangHoa/XuatTra")
     public ResponseEntity<ResponseDto> getXuatTraHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
