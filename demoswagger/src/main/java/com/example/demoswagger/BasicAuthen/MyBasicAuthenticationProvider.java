@@ -10,6 +10,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 @Component
 public class MyBasicAuthenticationProvider implements AuthenticationProvider {
@@ -22,6 +23,12 @@ public class MyBasicAuthenticationProvider implements AuthenticationProvider {
         String username = auth.getName();
         String password = auth.getCredentials()
                 .toString();
+
+        MyBasicAuthenticationLogin myBasicAuthenticationLogin = new MyBasicAuthenticationLogin();
+
+        String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa " + username + ", " + password + "";
+        myBasicAuthenticationLogin = jdbcTemplate.queryForObject(sql, new Object[] { username },
+                new MyBasicAuthenticationLoginRowMapper());
 
         if ("externaluser".equals(username) && "pass".equals(password)) {
             return new UsernamePasswordAuthenticationToken(username, password, Collections.emptyList());
