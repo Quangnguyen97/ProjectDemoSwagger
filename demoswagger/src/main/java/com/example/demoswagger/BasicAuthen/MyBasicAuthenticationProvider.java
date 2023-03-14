@@ -25,8 +25,7 @@ public class MyBasicAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
         try {
             String username = auth.getName();
-            String password = auth.getCredentials()
-                    .toString();
+            String password = auth.getCredentials().toString();
 
             String sql = "SELECT TOP 1 MaNguoiDung, MatKhau FROM COM_systbl_NguoiDung " +
                     "WHERE MaNguoiDung=N'" + username + "' AND MatKhau=N'" + password + "' AND KhongHienHoatHT=0";
