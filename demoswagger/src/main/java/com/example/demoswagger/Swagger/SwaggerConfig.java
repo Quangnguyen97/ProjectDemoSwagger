@@ -53,7 +53,8 @@ public class SwaggerConfig implements WebMvcConfigurer {
                     .select()
                     .paths(PathSelectors.any())
                     .apis(RequestHandlerSelectors.basePackage("com.example.demoswagger.Controller"))
-                    .build();
+                    .build()
+                    .enableUrlTemplating(true);
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

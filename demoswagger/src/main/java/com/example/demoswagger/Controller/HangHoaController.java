@@ -28,18 +28,18 @@ public class HangHoaController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private HangHoaServiceImpl banHangServiceImpl;
+    private HangHoaServiceImpl hangHoaServiceImpl;
 
-    public HangHoaController(HangHoaServiceImpl banHangServiceImpl) {
+    public HangHoaController(HangHoaServiceImpl hangHoaServiceImpl) {
         super();
-        this.banHangServiceImpl = banHangServiceImpl;
+        this.hangHoaServiceImpl = hangHoaServiceImpl;
     }
 
     @PostMapping("/HangHoa/BanHang")
     public ResponseEntity<ResponseDto> getBanHangHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = banHangServiceImpl
+            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
                     .getListBanHang(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -62,20 +62,23 @@ public class HangHoaController {
     public ResponseEntity<ResponseDto> getMuaHangHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = banHangServiceImpl
+            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
                     .getListMuaHang(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " +
+                        HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (HangHoa hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
+                    HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
+                    HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -85,20 +88,23 @@ public class HangHoaController {
     public ResponseEntity<ResponseDto> getNhapTraHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = banHangServiceImpl
+            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
                     .getListNhapTra(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " +
+                        HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (HangHoa hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
+                    HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
+                    HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -108,20 +114,23 @@ public class HangHoaController {
     public ResponseEntity<ResponseDto> getXuatTraHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = banHangServiceImpl
+            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
                     .getListXuatTra(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " +
+                        HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (HangHoa hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
+                    HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
+                    HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
