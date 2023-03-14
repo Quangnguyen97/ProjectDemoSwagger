@@ -1,16 +1,22 @@
 {
-    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.configuration.updateBuildConfiguration": "automatic",
     "cSpell.words": [
         "Authen",
+        "banhang",
         "Configurer",
         "demoswagger",
         "Exposable",
+        "GETTBL",
         "Gson",
+        "hanghoa",
         "insertable",
         "javac",
+        "Jdbc",
+        "Luong",
         "mapstruct",
         "NOTEXISTED",
-        "Servlet"
+        "Servlet",
+        "Tien"
     ],
     "java.compile.nullAnalysis.mode": "automatic"
 }

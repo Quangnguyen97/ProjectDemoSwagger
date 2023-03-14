@@ -18,6 +18,7 @@ import com.example.demoswagger.Module.*;
 @ComponentScan(basePackages = { "com.example.demoswagger.Response" })
 @ComponentScan(basePackages = { "com.example.demoswagger.Controller" })
 @ComponentScan(basePackages = { "com.example.demoswagger.Swagger" })
+@ComponentScan(basePackages = { "com.example.demoswagger.SQLServer" })
 public class DemoswaggerApplication {
 
 	@Bean
