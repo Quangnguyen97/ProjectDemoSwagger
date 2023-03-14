@@ -37,7 +37,7 @@ public class AccountController {
         this.accountServiceImpl = accountServiceImpl;
     }
 
-    @GetMapping("/user/{userId}/account")
+    @GetMapping("/User/{userId}/Account")
     public ResponseEntity<ResponseDto> getAllAccounts(@PathVariable(name = "userId") long userId) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -62,7 +62,7 @@ public class AccountController {
         }
     }
 
-    @GetMapping("/user/{userId}/account/{accountNumber}")
+    @GetMapping("/User/{userId}/Account/{accountNumber}")
     public ResponseEntity<ResponseDto> getAccountByNumber(@PathVariable(name = "userId") long userId,
             @PathVariable(name = "accountNumber") int accountNumber) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -83,7 +83,7 @@ public class AccountController {
         }
     }
 
-    @PostMapping("/user/{userId}/account")
+    @PostMapping("/User/{userId}/Account")
     public ResponseEntity<ResponseDto> saveAccount(@PathVariable(name = "userId") long userId,
             @RequestBody @Valid AccountDto accountDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -104,7 +104,7 @@ public class AccountController {
         }
     }
 
-    @PutMapping("/user/{userId}/account/{accountNumber}")
+    @PutMapping("/User/{userId}/Account/{accountNumber}")
     public ResponseEntity<ResponseDto> updateAccount(@PathVariable(name = "userId") long userId,
             @RequestBody @Valid AccountDto accountDto, @PathVariable(name = "accountNumber") int accountNumber) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -126,7 +126,7 @@ public class AccountController {
         }
     }
 
-    @DeleteMapping("/user/{userId}/account/{accountNumber}")
+    @DeleteMapping("/User/{userId}/Account/{accountNumber}")
     public ResponseEntity<ResponseDto> deleteAccount(@PathVariable(name = "userId") long userId,
             @PathVariable(name = "accountNumber") int accountNumber) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);

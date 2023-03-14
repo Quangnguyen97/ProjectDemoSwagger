@@ -37,7 +37,7 @@ public class UserController {
         this.userServiceImpl = userServiceImpl;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/User")
     public ResponseEntity<ResponseDto> getAllUsers() {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -62,7 +62,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/User/{userId}")
     public ResponseEntity<ResponseDto> getUserByUserId(@PathVariable(name = "userId") Long userId) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -82,7 +82,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/user")
+    @PostMapping("/User")
     public ResponseEntity<ResponseDto> saveUser(@RequestBody @Valid UserDto userDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -102,7 +102,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("/user/{userId}")
+    @PutMapping("/User/{userId}")
     public ResponseEntity<ResponseDto> updateUser(@PathVariable(name = "userId") Long userId,
             @RequestBody @Valid UserDto userDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -123,7 +123,7 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/user/{userId}")
+    @DeleteMapping("/User/{userId}")
     public ResponseEntity<ResponseDto> deleteUser(@PathVariable(name = "userId") Long userId) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {

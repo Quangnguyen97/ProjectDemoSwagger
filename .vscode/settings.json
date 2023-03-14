@@ -15,9 +15,11 @@
         "Jdbc",
         "Luong",
         "mapstruct",
+        "Nhap",
         "NOTEXISTED",
         "Servlet",
-        "Tien"
+        "Tien",
+        "Xuat"
     ],
     "java.compile.nullAnalysis.mode": "automatic"
 }

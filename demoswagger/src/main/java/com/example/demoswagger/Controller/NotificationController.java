@@ -30,7 +30,7 @@ public class NotificationController {
         this.notificationServiceImpl = notificationServiceImpl;
     }
 
-    @GetMapping("/notification/promotion")
+    @GetMapping("/Notification/Promotion")
     public ResponseEntity<ResponseDto> pushPromotion() {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -52,7 +52,7 @@ public class NotificationController {
         }
     }
 
-    @GetMapping("/notification/all")
+    @GetMapping("/Notification/All")
     public ResponseEntity<ResponseDto> pushAll() {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {

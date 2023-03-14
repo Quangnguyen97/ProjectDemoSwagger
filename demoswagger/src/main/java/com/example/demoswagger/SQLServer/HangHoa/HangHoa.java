@@ -1,4 +1,4 @@
-package com.example.demoswagger.SQLServer;
+package com.example.demoswagger.SQLServer.HangHoa;
 
 import lombok.Getter;
 import lombok.Setter;
