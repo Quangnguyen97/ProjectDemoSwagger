@@ -10,7 +10,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -35,7 +35,7 @@ public class BanHangController {
         this.banHangServiceImpl = banHangServiceImpl;
     }
 
-    @GetMapping("/banhang")
+    @PostMapping("/banhang")
     public ResponseEntity<ResponseDto> getBanHangHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {

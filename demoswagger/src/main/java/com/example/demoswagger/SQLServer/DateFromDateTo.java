@@ -1,5 +1,7 @@
 package com.example.demoswagger.SQLServer;
 
+import com.example.demoswagger.Module.ResourceDateTimeValid;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +9,10 @@ import lombok.Setter;
 @Setter
 public class DateFromDateTo {
 
+    @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
     private String dateFrom;
+
+    @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
     private String dateTo;
 
     public DateFromDateTo() {

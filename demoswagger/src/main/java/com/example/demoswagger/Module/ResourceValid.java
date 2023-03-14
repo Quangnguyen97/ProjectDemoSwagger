@@ -1,6 +1,7 @@
 package com.example.demoswagger.Module;
 
 import java.util.Date;
+
 import com.google.common.base.Strings;
 
 public class ResourceValid {
