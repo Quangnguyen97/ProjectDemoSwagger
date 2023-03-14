@@ -1,11 +1,13 @@
 package com.example.demoswagger.BasicAuthen;
 
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,6 +22,9 @@ public class MyBasicAuthWebSecurityConfiguration {
     private MyBasicAuthenticationEntryPoint authenticationEntryPoint;
 
     @Autowired
+    private DataSource dataSource;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authentication) throws Exception {
         try {
             PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -28,6 +33,13 @@ public class MyBasicAuthWebSecurityConfiguration {
                     .withUser("admin")
                     .password(encoder.encode("123456"))
                     .authorities("ROLE_ADMIN");
+            authentication
+                    .jdbcAuthentication().passwordEncoder(new BCryptPasswordEncoder())
+                    .dataSource(dataSource)
+                    .usersByUsernameQuery(
+                            "SELECT MaNguoiDung, MatKhau FROM COM_systbl_NguoiDung where MaNguoiDung=? AND KhongHienHoatHT=0")
+                    .authoritiesByUsernameQuery(
+                            "SELECT MaNguoiDung, MatKhau FROM users COM_systbl_NguoiDung MaNguoiDung=? AND KhongHienHoatHT=0");
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
