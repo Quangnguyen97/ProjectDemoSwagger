@@ -47,7 +47,7 @@ public class MyBasicAuthWebSecurityConfiguration {
                     .cors().disable()
                     .httpBasic()
                     .and()
-                    .authorizeRequests()
+                    .authorizeHttpRequests()
                     .antMatchers("/").permitAll()
                     .anyRequest().authenticated()
                     .and()

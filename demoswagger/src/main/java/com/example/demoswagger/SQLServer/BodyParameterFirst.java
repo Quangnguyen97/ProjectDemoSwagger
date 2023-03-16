@@ -21,6 +21,7 @@ public class BodyParameterFirst {
     private String codeValue;
 
     public BodyParameterFirst() {
+        super();
     }
 
     public BodyParameterFirst(String dateTo) {

@@ -14,6 +14,7 @@ public class Commodity {
     private Integer type;
 
     public Commodity() {
+        super();
     }
 
     public Commodity(int order, String description, double quantity, double amount) {

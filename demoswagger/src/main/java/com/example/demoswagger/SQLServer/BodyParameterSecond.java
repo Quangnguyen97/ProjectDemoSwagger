@@ -21,6 +21,7 @@ public class BodyParameterSecond {
     private String store;
 
     public BodyParameterSecond() {
+        super();
     }
 
     public BodyParameterSecond(String user) {
