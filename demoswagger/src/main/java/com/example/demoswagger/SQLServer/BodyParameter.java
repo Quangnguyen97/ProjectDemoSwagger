@@ -56,4 +56,13 @@ public class BodyParameter {
         this.codeType = codeType;
         this.codeValue = codeValue;
     }
+
+    public BodyParameter(String dateFrom, String dateTo, String code, Integer codeRest, String codeType) {
+        super();
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.code = code;
+        this.codeRest = codeRest;
+        this.codeType = codeType;
+    }
 }
