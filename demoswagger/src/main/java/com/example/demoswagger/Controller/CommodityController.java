@@ -22,7 +22,7 @@ import com.example.demoswagger.SQLServer.Commodity.Commodity;
 import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
 
 @RestController
-public class HangHoaController {
+public class CommodityController {
 
     @Autowired
     private ModelMapper modelMapper;
@@ -30,7 +30,7 @@ public class HangHoaController {
     @Autowired
     private CommodityServiceImpl hangHoaServiceImpl;
 
-    public HangHoaController(CommodityServiceImpl hangHoaServiceImpl) {
+    public CommodityController(CommodityServiceImpl hangHoaServiceImpl) {
         super();
         this.hangHoaServiceImpl = hangHoaServiceImpl;
     }
