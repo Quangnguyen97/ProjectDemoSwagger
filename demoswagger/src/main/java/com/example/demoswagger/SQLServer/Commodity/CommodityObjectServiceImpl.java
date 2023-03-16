@@ -3,7 +3,6 @@ package com.example.demoswagger.SQLServer.Commodity;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,12 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_KhachHang " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new CommodityObject(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -42,7 +46,12 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_NhapTra_KhachHang " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new CommodityObject(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -57,7 +66,12 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_MuaHang_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new CommodityObject(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -72,7 +86,12 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_XuatTra_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new CommodityObject(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -87,7 +106,12 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_QuayLe " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new CommodityObject(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

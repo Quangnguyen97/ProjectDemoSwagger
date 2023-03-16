@@ -3,7 +3,6 @@ package com.example.demoswagger.SQLServer.Commodity;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,11 @@ public class CommodityServiceImpl implements CommodityService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -42,7 +45,11 @@ public class CommodityServiceImpl implements CommodityService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_MuaHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -57,7 +64,11 @@ public class CommodityServiceImpl implements CommodityService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_NhapTra_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -72,7 +83,11 @@ public class CommodityServiceImpl implements CommodityService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_XuatTra_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

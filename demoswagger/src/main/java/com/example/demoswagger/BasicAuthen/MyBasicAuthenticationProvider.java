@@ -13,8 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-
 @Component
 public class MyBasicAuthenticationProvider implements AuthenticationProvider {
 
@@ -29,18 +27,19 @@ public class MyBasicAuthenticationProvider implements AuthenticationProvider {
 
             String sql = "SELECT TOP 1 MaNguoiDung, MatKhau FROM COM_systbl_NguoiDung " +
                     "WHERE MaNguoiDung=N'" + username + "' AND MatKhau=N'" + password + "' AND KhongHienHoatHT=0";
-            List<MyBasicAuthenticationLogin> ListLogin = jdbcTemplate.query(sql,
-                    BeanPropertyRowMapper.newInstance(MyBasicAuthenticationLogin.class));
-
-            if (ListLogin.isEmpty()) {
+            List<MyBasicAuthenticationLogin> listLogin = jdbcTemplate.query(sql,
+                    (resource, rowNum) -> new MyBasicAuthenticationLogin(
+                            resource.getString("MaNguoiDung"),
+                            resource.getString("MatKhau")));
+            if (listLogin.isEmpty()) {
                 throw new BadCredentialsException("Login information " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-            MyBasicAuthenticationLogin Login = ListLogin.stream()
-                    .filter(myBasicAuthenticationLogin -> username.equals(myBasicAuthenticationLogin.getMaNguoiDung()))
-                    .filter(myBasicAuthenticationLogin -> password.equals(myBasicAuthenticationLogin.getMatKhau()))
+            MyBasicAuthenticationLogin login = listLogin.stream()
+                    .filter(myLogin -> username.equals(myLogin.getUser()))
+                    .filter(myLogin -> password.equals(myLogin.getPass()))
                     .findAny()
                     .orElse(null);
-            if (Login == null) {
+            if (login == null) {
                 throw new BadCredentialsException("External system authentication failed");
             }
             return new UsernamePasswordAuthenticationToken(username, password, Collections.emptyList());

@@ -7,31 +7,31 @@ import lombok.Setter;
 @Setter
 public class MyBasicAuthenticationLogin {
 
-    private String maNguoiDung;
-    private String matKhau;
+    private String user;
+    private String pass;
 
     public MyBasicAuthenticationLogin() {
     }
 
-    public MyBasicAuthenticationLogin(String maNguoiDung, String matKhau) {
+    public MyBasicAuthenticationLogin(String user, String pass) {
         super();
-        this.maNguoiDung = maNguoiDung;
-        this.matKhau = matKhau;
+        this.user = user;
+        this.pass = pass;
     }
 
-    public String getMaNguoiDung() {
-        return maNguoiDung;
+    public String getUser() {
+        return user;
     }
 
-    public void setMaNguoiDung(String maNguoiDung) {
-        this.maNguoiDung = maNguoiDung;
+    public void setUser(String user) {
+        this.user = user;
     }
 
-    public String getMatKhau() {
-        return matKhau;
+    public String getPass() {
+        return pass;
     }
 
-    public void setMatKhau(String matKhau) {
-        this.matKhau = matKhau;
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }
