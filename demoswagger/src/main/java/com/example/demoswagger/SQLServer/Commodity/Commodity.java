@@ -11,6 +11,7 @@ public class Commodity {
     private String description;
     private double quantity;
     private double amount;
+    private Integer type;
 
     public Commodity() {
     }
@@ -21,6 +22,16 @@ public class Commodity {
         this.description = description;
         this.quantity = quantity;
         this.amount = amount;
+        this.type = null;
+    }
+
+    public Commodity(int order, String description, double quantity, double amount, Integer type) {
+        super();
+        this.order = order;
+        this.description = description;
+        this.quantity = quantity;
+        this.amount = amount;
+        this.type = type;
     }
 
     public int getOrder() {
@@ -53,5 +64,13 @@ public class Commodity {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

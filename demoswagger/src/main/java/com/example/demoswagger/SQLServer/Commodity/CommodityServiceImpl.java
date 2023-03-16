@@ -17,6 +17,7 @@ public class CommodityServiceImpl implements CommodityService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    // Commod
     @Override
     public List<Commodity> getListSellCommod(DateFromDateTo dateFromDateTo) {
         try {
@@ -88,6 +89,109 @@ public class CommodityServiceImpl implements CommodityService {
                     resource.getString("ThongTinHangHoa"),
                     resource.getDouble("SoLuong"),
                     resource.getDouble("SoTien")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    // Client
+    @Override
+    public List<Commodity> getListSellClient(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_KhachHang " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Commodity> getListImportClient(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_NhapTra_KhachHang " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    // Supplier
+    @Override
+    public List<Commodity> getListBuySupplier(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_MuaHang_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Commodity> getListExportSupplier(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_XuatTra_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    // Counter
+    @Override
+    public List<Commodity> getListSellCounter(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_QuayLe " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinHangHoa"),
+                    resource.getDouble("SoLuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
