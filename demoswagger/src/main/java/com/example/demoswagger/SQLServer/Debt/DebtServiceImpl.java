@@ -11,44 +11,37 @@ import com.example.demoswagger.SQLServer.BodyParameterFirst;
 import com.example.demoswagger.SQLServer.BodyParameterSecond;
 
 @Service
-public class DebtServiceImpl implements DeptDebtService {
+public class DebtServiceImpl implements DebtService {
 
     private String mDateFrom = "", mDateTo = "";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    // Commod
     @Override
     public List<Debt> getListCollectDebt(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(param)) {
+            if (!CheckDateTo(param)) {
                 throw new ResourceException(
-                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
+            String sql = "EXEC sp_GETTBL_ForAndroid_CongNoThu " + mDateTo + "";
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Debt(
                     resource.getInt("SapXep"),
-                    resource.getString("ThongTinHangHoa"),
-                    resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getInt("SoTien")));
+                    resource.getString("MaDoiTuong"),
+                    resource.getString("ThongTinDoiTuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
-    private boolean CheckDateFromDateTo(BodyParameterFirst param) {
+    private boolean CheckDateTo(BodyParameterFirst param) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateFrom())
-                    || ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateTo())) {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateTo())) {
                 return false;
-            }
-            if (ResourceValid.StrIsError(param.getDateFrom())) {
-                mDateFrom = "NULL";
-            } else {
-                mDateFrom = "'" + param.getDateFrom() + "'";
             }
             if (ResourceValid.StrIsError(param.getDateTo())) {
                 mDateTo = "NULL";

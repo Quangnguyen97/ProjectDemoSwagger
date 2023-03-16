@@ -29,6 +29,7 @@
         "Servlet",
         "systbl",
         "Tien",
+        "Tuong",
         "Xuat"
     ],
     "java.compile.nullAnalysis.mode": "automatic"

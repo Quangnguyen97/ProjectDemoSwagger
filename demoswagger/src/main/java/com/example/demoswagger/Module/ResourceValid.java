@@ -2,6 +2,7 @@ package com.example.demoswagger.Module;
 
 import java.util.Date;
 
+import com.example.demoswagger.SQLServer.BodyParameterFirst;
 import com.google.common.base.Strings;
 
 public class ResourceValid {

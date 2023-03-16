@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.BodyParameterFirst;
-import com.example.demoswagger.SQLServer.DateFromDateToDto;
+import com.example.demoswagger.SQLServer.DateFromToDto;
 import com.example.demoswagger.SQLServer.Commodity.Commodity;
 import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
 
@@ -36,7 +36,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Sell")
-    public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -61,7 +61,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Buy")
-    public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -86,7 +86,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Import")
-    public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -111,7 +111,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Export")
-    public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -136,7 +136,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Client/Sell")
-    public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -161,7 +161,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Client/Import")
-    public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -187,7 +187,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Supplier/Buy")
-    public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -213,7 +213,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Supplier/Export")
-    public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
@@ -239,7 +239,7 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Counter/Sell")
-    public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl

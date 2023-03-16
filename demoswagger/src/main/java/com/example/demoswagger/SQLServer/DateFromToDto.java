@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DateFromDateToDto {
+public class DateFromToDto {
     private String dateFrom;
     private String dateTo;
 }
