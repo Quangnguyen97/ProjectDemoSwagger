@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
-import com.example.demoswagger.SQLServer.BodyParameter;
+import com.example.demoswagger.SQLServer.BodyParameterFirst;
 import com.example.demoswagger.SQLServer.DateFromDateToDto;
 import com.example.demoswagger.SQLServer.Commodity.Commodity;
 import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
@@ -40,7 +40,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListSellCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -65,7 +65,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListBuyCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListBuyCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -90,7 +90,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListImportCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListImportCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -115,7 +115,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListExportCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListExportCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -140,7 +140,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellClient(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListSellClient(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -165,7 +165,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListImportClient(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListImportClient(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -191,7 +191,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListBuySupplier(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListBuySupplier(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -217,7 +217,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListExportSupplier(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListExportSupplier(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -243,7 +243,7 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellCounter(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                    .getListSellCounter(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
                             dateFromDateToDto.getDateFrom(),
                             dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {

@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.demoswagger.Module.*;
-import com.example.demoswagger.SQLServer.BodyParameter;
+import com.example.demoswagger.SQLServer.BodyParameterFirst;
 
 @Service
 public class CommodityServiceImpl implements CommodityService {
@@ -19,7 +19,7 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Commod
     @Override
-    public List<Commodity> getListSellCommod(BodyParameter param) {
+    public List<Commodity> getListSellCommod(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -38,7 +38,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListBuyCommod(BodyParameter param) {
+    public List<Commodity> getListBuyCommod(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -57,7 +57,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListImportCommod(BodyParameter param) {
+    public List<Commodity> getListImportCommod(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -76,7 +76,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListExportCommod(BodyParameter param) {
+    public List<Commodity> getListExportCommod(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -96,7 +96,7 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Client
     @Override
-    public List<Commodity> getListSellClient(BodyParameter param) {
+    public List<Commodity> getListSellClient(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -116,7 +116,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListImportClient(BodyParameter param) {
+    public List<Commodity> getListImportClient(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -137,7 +137,7 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Supplier
     @Override
-    public List<Commodity> getListBuySupplier(BodyParameter param) {
+    public List<Commodity> getListBuySupplier(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -157,7 +157,7 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListExportSupplier(BodyParameter param) {
+    public List<Commodity> getListExportSupplier(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -178,7 +178,7 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Counter
     @Override
-    public List<Commodity> getListSellCounter(BodyParameter param) {
+    public List<Commodity> getListSellCounter(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(param)) {
@@ -197,7 +197,7 @@ public class CommodityServiceImpl implements CommodityService {
         }
     }
 
-    private boolean CheckDateFromDateTo(BodyParameter param) {
+    private boolean CheckDateFromDateTo(BodyParameterFirst param) {
         try {
             if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateFrom())
                     || ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateTo())) {

@@ -2,29 +2,29 @@ package com.example.demoswagger.SQLServer.Commodity;
 
 import java.util.List;
 
-import com.example.demoswagger.SQLServer.BodyParameter;
+import com.example.demoswagger.SQLServer.BodyParameterFirst;
 
 public interface CommodityService {
 
     // Commod
-    List<Commodity> getListSellCommod(BodyParameter bodyParameter);
+    List<Commodity> getListSellCommod(BodyParameterFirst param);
 
-    List<Commodity> getListBuyCommod(BodyParameter bodyParameter);
+    List<Commodity> getListBuyCommod(BodyParameterFirst param);
 
-    List<Commodity> getListImportCommod(BodyParameter bodyParameter);
+    List<Commodity> getListImportCommod(BodyParameterFirst param);
 
-    List<Commodity> getListExportCommod(BodyParameter bodyParameter);
+    List<Commodity> getListExportCommod(BodyParameterFirst param);
 
     // Client
-    List<Commodity> getListSellClient(BodyParameter bodyParameter);
+    List<Commodity> getListSellClient(BodyParameterFirst param);
 
-    List<Commodity> getListImportClient(BodyParameter bodyParameter);
+    List<Commodity> getListImportClient(BodyParameterFirst param);
 
     // Supplier
-    List<Commodity> getListBuySupplier(BodyParameter bodyParameter);
+    List<Commodity> getListBuySupplier(BodyParameterFirst param);
 
-    List<Commodity> getListExportSupplier(BodyParameter bodyParameter);
+    List<Commodity> getListExportSupplier(BodyParameterFirst param);
 
     // Counter
-    List<Commodity> getListSellCounter(BodyParameter bodyParameter);
+    List<Commodity> getListSellCounter(BodyParameterFirst param);
 }

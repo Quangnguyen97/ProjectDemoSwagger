@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BodyParameter {
+public class BodyParameterFirst {
 
     @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
     private String dateFrom;
@@ -20,28 +20,37 @@ public class BodyParameter {
     private String codeType;
     private String codeValue;
 
-    public BodyParameter() {
+    public BodyParameterFirst() {
     }
 
-    public BodyParameter(String dateTo) {
+    public BodyParameterFirst(String dateTo) {
         super();
         this.dateTo = dateTo;
     }
 
-    public BodyParameter(String dateFrom, String dateTo) {
+    public BodyParameterFirst(String dateFrom, String dateTo) {
         super();
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }
 
-    public BodyParameter(String dateFrom, String dateTo, String codeType) {
+    public BodyParameterFirst(String dateFrom, String dateTo, String codeType) {
         super();
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.codeType = codeType;
     }
 
-    public BodyParameter(String dateFrom, String dateTo, String code, Integer codeRest) {
+    public BodyParameterFirst(String dateFrom, String dateTo, String codeType, String codeValue) {
+        super();
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.codeType = codeType;
+        this.codeValue = codeValue;
+
+    }
+
+    public BodyParameterFirst(String dateFrom, String dateTo, String code, Integer codeRest) {
         super();
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
@@ -49,15 +58,7 @@ public class BodyParameter {
         this.codeRest = codeRest;
     }
 
-    public BodyParameter(String dateFrom, String dateTo, String codeType, String codeValue) {
-        super();
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-        this.codeType = codeType;
-        this.codeValue = codeValue;
-    }
-
-    public BodyParameter(String dateFrom, String dateTo, String code, Integer codeRest, String codeType) {
+    public BodyParameterFirst(String dateFrom, String dateTo, String code, Integer codeRest, String codeType) {
         super();
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
