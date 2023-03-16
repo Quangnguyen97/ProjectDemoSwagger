@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.BodyParameterFirst;
+import com.example.demoswagger.SQLServer.DateFromToCodeRestDto;
 import com.example.demoswagger.SQLServer.DateToDto;
 import com.example.demoswagger.SQLServer.Debt.Debt;
+import com.example.demoswagger.SQLServer.Debt.DebtChartDetail;
 import com.example.demoswagger.SQLServer.Debt.DebtServiceImpl;
 
 @RestController
@@ -36,17 +38,92 @@ public class DebtController {
     }
 
     @PostMapping("/Debt/Collect")
-    public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateToDto dateToDto) {
+    public ResponseEntity<ResponseDto> getCollectDebt(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Debt> listResponse = debtServiceImpl
-                    .getListCollectDebt(modelMapper.map(dateToDto, new BodyParameterFirst(
-                            dateToDto.getDateTo()).getClass()));
+                    .getListCollectDebt(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List collect debt " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Debt response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/Debt/Pay")
+    public ResponseEntity<ResponseDto> getPayDebt(@RequestBody @Valid DateToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<Debt> listResponse = debtServiceImpl
+                    .getListPayDebt(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List pay debt " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (Debt response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtChart/Collect")
+    public ResponseEntity<ResponseDto> getCollectChart(@RequestBody @Valid DateToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<Debt> listResponse = debtServiceImpl
+                    .getListCollectChart(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List collect debt chart " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (Debt response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtChartDetail/Collect")
+    public ResponseEntity<ResponseDto> getCollectChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtChartDetail> listResponse = debtServiceImpl
+                    .getListCollectChartDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCode(),
+                            param.getCodeRest()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List collect debt chart detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtChartDetail response : listResponse) {
                 listObject.add(response);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),

@@ -12,7 +12,7 @@ import com.example.demoswagger.SQLServer.BodyParameterFirst;
 @Service
 public class CommodityServiceImpl implements CommodityService {
 
-    private String mDateFrom = "", mDateTo = "";
+    private String mDateFrom, mDateTo;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

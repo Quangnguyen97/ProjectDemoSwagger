@@ -9,12 +9,13 @@ public interface DebtService {
 
     List<Debt> getListCollectDebt(BodyParameterFirst param);
 
-    // List<Debt> getListPayDebt(BodyParameterFirst param);
+    List<Debt> getListPayDebt(BodyParameterFirst param);
 
     // Top chart
-    // List<Debt> getListCollectChart(BodyParameterFirst param);
 
-    // List<DebtChartDetail> getListCollectChartDetail(BodyParameterFirst param);
+    List<Debt> getListCollectChart(BodyParameterFirst param);
+
+    List<DebtChartDetail> getListCollectChartDetail(BodyParameterFirst param);
 
     // List<Debt> getListPayChart(BodyParameterFirst param);
 

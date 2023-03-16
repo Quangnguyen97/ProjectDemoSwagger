@@ -2,7 +2,6 @@ package com.example.demoswagger.Module;
 
 import java.util.Date;
 
-import com.example.demoswagger.SQLServer.BodyParameterFirst;
 import com.google.common.base.Strings;
 
 public class ResourceValid {
@@ -58,19 +57,36 @@ public class ResourceValid {
 
     public static String StringError(typeERROR typeString, String resourceName) {
         try {
-            switch (typeString) {
-                case REQUEST:
-                    return String.format("Request body is empty %s", resourceName);
-                case FIELD:
-                    return String.format("Request body is error with field %s", resourceName);
-                case DIFFERENT:
-                    return String.format("Request body is different with field %s", resourceName);
-                case NOTEXISTED:
-                    return String.format("Data does not exist with field %s", resourceName);
-                case EXISTED:
-                    return String.format("Data have exist with field %s", resourceName);
-                default:
-                    return String.format("Error exception with %s", resourceName);
+            if (Strings.isNullOrEmpty(resourceName)) {
+                switch (typeString) {
+                    case REQUEST:
+                        return "Request body is empty";
+                    case FIELD:
+                        return "Request body is error field";
+                    case DIFFERENT:
+                        return "Request body is different field";
+                    case NOTEXISTED:
+                        return "Data does not exist";
+                    case EXISTED:
+                        return "Data have exist";
+                    default:
+                        return "Error exception";
+                }
+            } else {
+                switch (typeString) {
+                    case REQUEST:
+                        return String.format("Request body is empty %s", resourceName);
+                    case FIELD:
+                        return String.format("Request body is error with field %s", resourceName);
+                    case DIFFERENT:
+                        return String.format("Request body is different with field %s", resourceName);
+                    case NOTEXISTED:
+                        return String.format("Data does not exist with field %s", resourceName);
+                    case EXISTED:
+                        return String.format("Data have exist with field %s", resourceName);
+                    default:
+                        return String.format("Error exception with %s", resourceName);
+                }
             }
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());

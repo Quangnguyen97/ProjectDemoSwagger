@@ -36,13 +36,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Sell")
-    public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListSellCommod(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List sell commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -61,13 +61,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Buy")
-    public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListBuyCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListBuyCommod(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List buy commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -86,13 +86,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Import")
-    public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListImportCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListImportCommod(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List import commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -111,13 +111,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Export")
-    public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListExportCommod(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListExportCommod(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List export commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -136,13 +136,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Client/Sell")
-    public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellClient(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListSellClient(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List commodity sell by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -161,13 +161,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Client/Import")
-    public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListImportClient(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListImportClient(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity import by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -187,13 +187,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Supplier/Buy")
-    public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListBuySupplier(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListBuySupplier(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity buy by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -213,13 +213,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Supplier/Export")
-    public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListExportSupplier(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListExportSupplier(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity export by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -239,13 +239,13 @@ public class CommodityController {
     }
 
     @PostMapping("/Commodity/Counter/Sell")
-    public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellCounter(modelMapper.map(dateFromDateToDto, new BodyParameterFirst(
-                            dateFromDateToDto.getDateFrom(),
-                            dateFromDateToDto.getDateTo()).getClass()));
+                    .getListSellCounter(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity sell by counter " + HttpStatus.NOT_FOUND.getReasonPhrase());
