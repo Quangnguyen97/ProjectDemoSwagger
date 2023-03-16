@@ -1,4 +1,4 @@
-package com.example.demoswagger.SQLServer.HangHoa;
+package com.example.demoswagger.SQLServer.Commodity;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import com.example.demoswagger.Module.*;
 import com.example.demoswagger.SQLServer.DateFromDateTo;
 
 @Service
-public class HangHoaServiceImpl implements HangHoaService {
+public class CommodityServiceImpl implements CommodityService {
 
     private String mDateFrom = "", mDateTo = "";
 
@@ -19,7 +19,7 @@ public class HangHoaServiceImpl implements HangHoaService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<HangHoa> getListBanHang(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListSellCommod(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -27,14 +27,14 @@ public class HangHoaServiceImpl implements HangHoaService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(HangHoa.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<HangHoa> getListMuaHang(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListBuyCommod(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -42,14 +42,14 @@ public class HangHoaServiceImpl implements HangHoaService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_MuaHang_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(HangHoa.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<HangHoa> getListNhapTra(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListImportCommod(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -57,14 +57,14 @@ public class HangHoaServiceImpl implements HangHoaService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_NhapTra_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(HangHoa.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<HangHoa> getListXuatTra(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListExportCommod(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -72,7 +72,7 @@ public class HangHoaServiceImpl implements HangHoaService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_XuatTra_HangHoa " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(HangHoa.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

@@ -18,8 +18,8 @@ import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.DateFromDateTo;
 import com.example.demoswagger.SQLServer.DateFromDateToDto;
-import com.example.demoswagger.SQLServer.HangHoa.HangHoaServiceImpl;
-import com.example.demoswagger.SQLServer.HangHoa.HangHoa;
+import com.example.demoswagger.SQLServer.Commodity.Commodity;
+import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
 
 @RestController
 public class HangHoaController {
@@ -28,24 +28,24 @@ public class HangHoaController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private HangHoaServiceImpl hangHoaServiceImpl;
+    private CommodityServiceImpl hangHoaServiceImpl;
 
-    public HangHoaController(HangHoaServiceImpl hangHoaServiceImpl) {
+    public HangHoaController(CommodityServiceImpl hangHoaServiceImpl) {
         super();
         this.hangHoaServiceImpl = hangHoaServiceImpl;
     }
 
     @PostMapping("/HangHoa/BanHang")
-    public ResponseEntity<ResponseDto> getBanHangHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
-                    .getListBanHang(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+                    .getListSellCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (HangHoa hangHoa : listBanHangHangHoa) {
+            for (Commodity hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
@@ -59,17 +59,17 @@ public class HangHoaController {
     }
 
     @PostMapping("/HangHoa/MuaHang")
-    public ResponseEntity<ResponseDto> getMuaHangHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
-                    .getListMuaHang(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+                    .getListBuyCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
                 throw new ResourceException("List " +
                         HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (HangHoa hangHoa : listBanHangHangHoa) {
+            for (Commodity hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
@@ -85,17 +85,17 @@ public class HangHoaController {
     }
 
     @PostMapping("/HangHoa/NhapTra")
-    public ResponseEntity<ResponseDto> getNhapTraHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
-                    .getListNhapTra(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+                    .getListImportCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
                 throw new ResourceException("List " +
                         HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (HangHoa hangHoa : listBanHangHangHoa) {
+            for (Commodity hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
@@ -111,17 +111,17 @@ public class HangHoaController {
     }
 
     @PostMapping("/HangHoa/XuatTra")
-    public ResponseEntity<ResponseDto> getXuatTraHangHoa(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
+    public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<HangHoa> listBanHangHangHoa = hangHoaServiceImpl
-                    .getListXuatTra(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+                    .getListExportCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listBanHangHangHoa.isEmpty()) {
                 throw new ResourceException("List " +
                         HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (HangHoa hangHoa : listBanHangHangHoa) {
+            for (Commodity hangHoa : listBanHangHangHoa) {
                 listObject.add(hangHoa);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto,

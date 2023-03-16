@@ -1,21 +1,21 @@
-package com.example.demoswagger.SQLServer.HangHoa;
+package com.example.demoswagger.SQLServer.Commodity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class HangHoa {
+public class Commodity {
 
     private int sapXep;
     private String thongTinHangHoa;
     private double soLuong;
     private double soTien;
 
-    public HangHoa() {
+    public Commodity() {
     }
 
-    public HangHoa(int sapXep, String thongTinHangHoa, String notificationToken, double soLuong, double soTien) {
+    public Commodity(int sapXep, String thongTinHangHoa, String notificationToken, double soLuong, double soTien) {
         super();
         this.sapXep = sapXep;
         this.thongTinHangHoa = thongTinHangHoa;
