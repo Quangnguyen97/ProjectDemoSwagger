@@ -7,52 +7,51 @@ import lombok.Setter;
 @Setter
 public class Commodity {
 
-    private int dataOrder;
-    private String dataDescription;
-    private double dataQuantity;
-    private double dataAmount;
+    private int sapXep;
+    private String thongTinHangHoa;
+    private double soLuong;
+    private double soTien;
 
     public Commodity() {
     }
 
-    public Commodity(int dataOrder, String dataDescription, String notificationToken, double dataQuantity,
-            double dataAmount) {
+    public Commodity(int sapXep, String thongTinHangHoa, double soLuong, double soTien) {
         super();
-        this.dataOrder = dataOrder;
-        this.dataDescription = dataDescription;
-        this.dataQuantity = dataQuantity;
-        this.dataAmount = dataAmount;
+        this.sapXep = sapXep;
+        this.thongTinHangHoa = thongTinHangHoa;
+        this.soLuong = soLuong;
+        this.soTien = soTien;
     }
 
-    public int getDataOrder() {
-        return dataOrder;
+    public int getSapXep() {
+        return sapXep;
     }
 
-    public void setDataOrder(int dataOrder) {
-        this.dataOrder = dataOrder;
+    public void setSapXep(int sapXep) {
+        this.sapXep = sapXep;
     }
 
-    public String getDataDescription() {
-        return dataDescription;
+    public String getThongTinHangHoa() {
+        return thongTinHangHoa;
     }
 
-    public void setDataDescription(String dataDescription) {
-        this.dataDescription = dataDescription;
+    public void setThongTinHangHoa(String thongTinHangHoa) {
+        this.thongTinHangHoa = thongTinHangHoa;
     }
 
-    public double getDataQuantity() {
-        return dataQuantity;
+    public double getSoLuong() {
+        return soLuong;
     }
 
-    public void setDataQuantity(double dataQuantity) {
-        this.dataQuantity = dataQuantity;
+    public void setSoLuong(double soLuong) {
+        this.soLuong = soLuong;
     }
 
-    public double getDataAmount() {
-        return dataAmount;
+    public double getSoTien() {
+        return soTien;
     }
 
-    public void setDataAmount(double dataAmount) {
-        this.dataAmount = dataAmount;
+    public void setSoTien(double soTien) {
+        this.soTien = soTien;
     }
 }
