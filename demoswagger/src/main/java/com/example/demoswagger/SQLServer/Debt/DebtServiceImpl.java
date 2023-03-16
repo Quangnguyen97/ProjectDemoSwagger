@@ -159,9 +159,9 @@ public class DebtServiceImpl implements DebtService {
                 return false;
             }
             if (ResourceValid.StrIsError(String.valueOf(param.getCodeRest()))) {
-                mCode = "NULL";
+                mCodeRest = 0;
             } else {
-                mCode = "" + param.getCodeRest() + "";
+                mCodeRest = param.getCodeRest();
             }
             return true;
         } catch (Exception e) {

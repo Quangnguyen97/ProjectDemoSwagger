@@ -2,6 +2,8 @@ package com.example.demoswagger.SQLServer.Debt;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +13,10 @@ public class DebtChartDetail {
 
     private String code;
     private String name;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date date;
+
     private double begin;
     private double incurred;
     private double pay;
