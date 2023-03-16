@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
-import com.example.demoswagger.SQLServer.DateFromDateTo;
+import com.example.demoswagger.SQLServer.BodyParameter;
 import com.example.demoswagger.SQLServer.DateFromDateToDto;
 import com.example.demoswagger.SQLServer.Commodity.Commodity;
 import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
@@ -40,7 +40,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListSellCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List sell commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -63,7 +65,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListBuyCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListBuyCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List buy commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -86,7 +90,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListImportCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListImportCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List import commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -109,7 +115,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListExportCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListExportCommod(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List export commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -132,7 +140,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellClient(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListSellClient(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List commodity sell by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -155,7 +165,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListImportClient(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListImportClient(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity import by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -179,7 +191,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListBuySupplier(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListBuySupplier(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity buy by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -203,7 +217,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListExportSupplier(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListExportSupplier(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity export by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -227,7 +243,9 @@ public class CommodityController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<Commodity> listResponse = commodityServiceImpl
-                    .getListSellCounter(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
+                    .getListSellCounter(modelMapper.map(dateFromDateToDto, new BodyParameter(
+                            dateFromDateToDto.getDateFrom(),
+                            dateFromDateToDto.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity sell by counter " + HttpStatus.NOT_FOUND.getReasonPhrase());

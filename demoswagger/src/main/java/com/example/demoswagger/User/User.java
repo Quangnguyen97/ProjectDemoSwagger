@@ -49,38 +49,6 @@ public class User {
         this.notificationToken = notificationToken;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
-    }
-
-    public String getNotificationToken() {
-        return notificationToken;
-    }
-
-    public void setNotificationToken(String notificationToken) {
-        this.notificationToken = notificationToken;
-    }
-
     @Override
     public boolean equals(Object object) {
         if (this == object)

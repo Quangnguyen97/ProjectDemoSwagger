@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.demoswagger.Module.*;
-import com.example.demoswagger.SQLServer.DateFromDateTo;
+import com.example.demoswagger.SQLServer.BodyParameter;
 
 @Service
 public class CommodityServiceImpl implements CommodityService {
@@ -19,10 +19,10 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Commod
     @Override
-    public List<Commodity> getListSellCommod(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListSellCommod(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -38,10 +38,10 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListBuyCommod(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListBuyCommod(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -57,10 +57,10 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListImportCommod(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListImportCommod(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -76,10 +76,10 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListExportCommod(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListExportCommod(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -96,10 +96,10 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Client
     @Override
-    public List<Commodity> getListSellClient(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListSellClient(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -116,10 +116,10 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListImportClient(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListImportClient(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -137,10 +137,10 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Supplier
     @Override
-    public List<Commodity> getListBuySupplier(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListBuySupplier(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -157,10 +157,10 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public List<Commodity> getListExportSupplier(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListExportSupplier(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -178,10 +178,10 @@ public class CommodityServiceImpl implements CommodityService {
 
     // Counter
     @Override
-    public List<Commodity> getListSellCounter(DateFromDateTo dateFromDateTo) {
+    public List<Commodity> getListSellCounter(BodyParameter param) {
         try {
             // Check error field
-            if (!CheckDateFromDateTo(dateFromDateTo)) {
+            if (!CheckDateFromDateTo(param)) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
@@ -197,21 +197,21 @@ public class CommodityServiceImpl implements CommodityService {
         }
     }
 
-    private boolean CheckDateFromDateTo(DateFromDateTo dateFromDateTo) {
+    private boolean CheckDateFromDateTo(BodyParameter param) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFromDateTo.getDateFrom())
-                    || ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFromDateTo.getDateTo())) {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateFrom())
+                    || ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateTo())) {
                 return false;
             }
-            if (ResourceValid.StrIsError(dateFromDateTo.getDateFrom())) {
+            if (ResourceValid.StrIsError(param.getDateFrom())) {
                 mDateFrom = "NULL";
             } else {
-                mDateFrom = "'" + dateFromDateTo.getDateFrom() + "'";
+                mDateFrom = "'" + param.getDateFrom() + "'";
             }
-            if (ResourceValid.StrIsError(dateFromDateTo.getDateTo())) {
+            if (ResourceValid.StrIsError(param.getDateTo())) {
                 mDateTo = "NULL";
             } else {
-                mDateTo = "'" + dateFromDateTo.getDateTo() + "'";
+                mDateTo = "'" + param.getDateTo() + "'";
             }
             return true;
         } catch (Exception e) {

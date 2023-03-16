@@ -53,44 +53,4 @@ public class Notification {
         this.accountNumber = accountNumber;
         this.accountBalance = accountBalance;
     }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getNotificationToken() {
-        return notificationToken;
-    }
-
-    public void setNotificationToken(String notificationToken) {
-        this.notificationToken = notificationToken;
-    }
-
-    public long getAccountNumber() {
-        return accountNumber;
-    }
-
-    public void setAccountNumber(long accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public double getAccountBalance() {
-        return accountBalance;
-    }
-
-    public void setAccountBalance(double accountBalance) {
-        this.accountBalance = accountBalance;
-    }
 }
