@@ -11,7 +11,11 @@ public class Debt {
     private String code;
     private String name;
     private double value;
+
     private Integer type;
+
+    private Double density;
+    private Integer codeRest;
 
     public Debt() {
         super();
@@ -24,6 +28,8 @@ public class Debt {
         this.name = name;
         this.value = value;
         this.type = null;
+        this.density = null;
+        this.codeRest = null;
     }
 
     public Debt(int order, String code, String name, double value, Integer type) {
@@ -33,5 +39,18 @@ public class Debt {
         this.name = name;
         this.value = value;
         this.type = type;
+        this.density = null;
+        this.codeRest = null;
+    }
+
+    public Debt(int order, String code, String name, double value, Double density, Integer codeRest) {
+        super();
+        this.order = order;
+        this.code = code;
+        this.name = name;
+        this.value = value;
+        this.type = null;
+        this.density = density;
+        this.codeRest = codeRest;
     }
 }
