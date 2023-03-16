@@ -19,7 +19,7 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<Commodity> getListSellClient(DateFromDateTo dateFromDateTo) {
+    public List<CommodityObject> getListSellClient(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -27,14 +27,14 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_KhachHang " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<Commodity> getListImportClient(DateFromDateTo dateFromDateTo) {
+    public List<CommodityObject> getListImportClient(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -42,14 +42,14 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_NhapTra_KhachHang " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<Commodity> getListBuySupplier(DateFromDateTo dateFromDateTo) {
+    public List<CommodityObject> getListBuySupplier(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -57,14 +57,14 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_MuaHang_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<Commodity> getListExportSupplier(DateFromDateTo dateFromDateTo) {
+    public List<CommodityObject> getListExportSupplier(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -72,14 +72,14 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_XuatTra_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<Commodity> getListSellCounter(DateFromDateTo dateFromDateTo) {
+    public List<CommodityObject> getListSellCounter(DateFromDateTo dateFromDateTo) {
         try {
             // Check error field
             if (!CheckDateFromDateTo(dateFromDateTo)) {
@@ -87,7 +87,7 @@ public class CommodityObjectServiceImpl implements CommodityObjectService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_QuayLe " + mDateFrom + ", " + mDateTo + "";
-            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(CommodityObject.class));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

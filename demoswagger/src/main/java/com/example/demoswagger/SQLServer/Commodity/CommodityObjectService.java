@@ -7,15 +7,15 @@ import com.example.demoswagger.SQLServer.DateFromDateTo;
 public interface CommodityObjectService {
 
     // Client
-    List<Commodity> getListSellClient(DateFromDateTo dateFromDateTo);
+    List<CommodityObject> getListSellClient(DateFromDateTo dateFromDateTo);
 
-    List<Commodity> getListImportClient(DateFromDateTo dateFromDateTo);
+    List<CommodityObject> getListImportClient(DateFromDateTo dateFromDateTo);
 
     // Supplier
-    List<Commodity> getListBuySupplier(DateFromDateTo dateFromDateTo);
+    List<CommodityObject> getListBuySupplier(DateFromDateTo dateFromDateTo);
 
-    List<Commodity> getListExportSupplier(DateFromDateTo dateFromDateTo);
+    List<CommodityObject> getListExportSupplier(DateFromDateTo dateFromDateTo);
 
     // Counter
-    List<Commodity> getListSellCounter(DateFromDateTo dateFromDateTo);
+    List<CommodityObject> getListSellCounter(DateFromDateTo dateFromDateTo);
 }

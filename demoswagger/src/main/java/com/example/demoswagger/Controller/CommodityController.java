@@ -19,6 +19,7 @@ import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.DateFromDateTo;
 import com.example.demoswagger.SQLServer.DateFromDateToDto;
 import com.example.demoswagger.SQLServer.Commodity.Commodity;
+import com.example.demoswagger.SQLServer.Commodity.CommodityObject;
 import com.example.demoswagger.SQLServer.Commodity.CommodityObjectServiceImpl;
 import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
 
@@ -137,14 +138,14 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityObjectServiceImpl
+            List<CommodityObject> listResponse = commodityObjectServiceImpl
                     .getListSellClient(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List commodity sell by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity commodity : listResponse) {
-                listObject.add(commodity);
+            for (CommodityObject commodityObject : listResponse) {
+                listObject.add(commodityObject);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
@@ -160,15 +161,15 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityObjectServiceImpl
+            List<CommodityObject> listResponse = commodityObjectServiceImpl
                     .getListImportClient(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity import by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity commodity : listResponse) {
-                listObject.add(commodity);
+            for (CommodityObject commodityObject : listResponse) {
+                listObject.add(commodityObject);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
@@ -184,15 +185,15 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityObjectServiceImpl
+            List<CommodityObject> listResponse = commodityObjectServiceImpl
                     .getListBuySupplier(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity buy by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity commodity : listResponse) {
-                listObject.add(commodity);
+            for (CommodityObject commodityObject : listResponse) {
+                listObject.add(commodityObject);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
@@ -208,15 +209,15 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityObjectServiceImpl
+            List<CommodityObject> listResponse = commodityObjectServiceImpl
                     .getListExportSupplier(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity export by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity commodity : listResponse) {
-                listObject.add(commodity);
+            for (CommodityObject commodityObject : listResponse) {
+                listObject.add(commodityObject);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
@@ -232,15 +233,15 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityObjectServiceImpl
+            List<CommodityObject> listResponse = commodityObjectServiceImpl
                     .getListSellCounter(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
                         "List commodity sell by counter " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity commodity : listResponse) {
-                listObject.add(commodity);
+            for (CommodityObject commodityObject : listResponse) {
+                listObject.add(commodityObject);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
