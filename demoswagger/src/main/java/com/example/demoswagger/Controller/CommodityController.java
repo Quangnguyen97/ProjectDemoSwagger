@@ -28,25 +28,25 @@ public class CommodityController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private CommodityServiceImpl hangHoaServiceImpl;
+    private CommodityServiceImpl commodityServiceImpl;
 
-    public CommodityController(CommodityServiceImpl hangHoaServiceImpl) {
+    public CommodityController(CommodityServiceImpl commodityServiceImpl) {
         super();
-        this.hangHoaServiceImpl = hangHoaServiceImpl;
+        this.commodityServiceImpl = commodityServiceImpl;
     }
 
-    @PostMapping("/HangHoa/BanHang")
+    @PostMapping("/Commodity/Sell")
     public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+            List<Commodity> listSellCommod = commodityServiceImpl
                     .getListSellCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
-            if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            if (listSellCommod.isEmpty()) {
+                throw new ResourceException("List sell commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity hangHoa : listBanHangHangHoa) {
-                listObject.add(hangHoa);
+            for (Commodity commodity : listSellCommod) {
+                listObject.add(commodity);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
@@ -58,79 +58,70 @@ public class CommodityController {
         }
     }
 
-    @PostMapping("/HangHoa/MuaHang")
+    @PostMapping("/Commodity/Buy")
     public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+            List<Commodity> listBuyCommod = commodityServiceImpl
                     .getListBuyCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
-            if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " +
-                        HttpStatus.NOT_FOUND.getReasonPhrase());
+            if (listBuyCommod.isEmpty()) {
+                throw new ResourceException("List buy commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity hangHoa : listBanHangHangHoa) {
-                listObject.add(hangHoa);
+            for (Commodity commodity : listBuyCommod) {
+                listObject.add(commodity);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
-                    HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
-                    HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
     }
 
-    @PostMapping("/HangHoa/NhapTra")
+    @PostMapping("/Commodity/Import")
     public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+            List<Commodity> listImportCommod = commodityServiceImpl
                     .getListImportCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
-            if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " +
-                        HttpStatus.NOT_FOUND.getReasonPhrase());
+            if (listImportCommod.isEmpty()) {
+                throw new ResourceException("List import commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity hangHoa : listBanHangHangHoa) {
-                listObject.add(hangHoa);
+            for (Commodity commodity : listImportCommod) {
+                listObject.add(commodity);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
-                    HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
-                    HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
     }
 
-    @PostMapping("/HangHoa/XuatTra")
+    @PostMapping("/Commodity/Export")
     public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listBanHangHangHoa = hangHoaServiceImpl
+            List<Commodity> listExportCommod = commodityServiceImpl
                     .getListExportCommod(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
-            if (listBanHangHangHoa.isEmpty()) {
-                throw new ResourceException("List " +
-                        HttpStatus.NOT_FOUND.getReasonPhrase());
+            if (listExportCommod.isEmpty()) {
+                throw new ResourceException("List export commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
-            for (Commodity hangHoa : listBanHangHangHoa) {
-                listObject.add(hangHoa);
+            for (Commodity commodity : listExportCommod) {
+                listObject.add(commodity);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
-                    HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto,
-                    HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }

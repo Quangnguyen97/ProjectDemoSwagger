@@ -78,6 +78,81 @@ public class CommodityServiceImpl implements CommodityService {
         }
     }
 
+    @Override
+    public List<Commodity> getListSellClient(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_KhachHang " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Commodity> getListImportClient(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_NhapTra_KhachHang " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Commodity> getListBuySupplier(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_MuaHang_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Commodity> getListExportSupplier(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_XuatTra_NhaCungCap " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Commodity> getListSellCounter(DateFromDateTo dateFromDateTo) {
+        try {
+            // Check error field
+            if (!CheckDateFromDateTo(dateFromDateTo)) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateFrom | DateTo"));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_BanHang_QuayLe " + mDateFrom + ", " + mDateTo + "";
+            return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Commodity.class));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
     private boolean CheckDateFromDateTo(DateFromDateTo dateFromDateTo) {
         try {
             if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFromDateTo.getDateFrom())
