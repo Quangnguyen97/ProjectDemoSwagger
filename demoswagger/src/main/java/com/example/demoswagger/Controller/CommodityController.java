@@ -19,6 +19,7 @@ import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.DateFromDateTo;
 import com.example.demoswagger.SQLServer.DateFromDateToDto;
 import com.example.demoswagger.SQLServer.Commodity.Commodity;
+import com.example.demoswagger.SQLServer.Commodity.CommodityObjectServiceImpl;
 import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
 
 @RestController
@@ -30,9 +31,14 @@ public class CommodityController {
     @Autowired
     private CommodityServiceImpl commodityServiceImpl;
 
-    public CommodityController(CommodityServiceImpl commodityServiceImpl) {
+    @Autowired
+    private CommodityObjectServiceImpl commodityObjectServiceImpl;
+
+    public CommodityController(CommodityServiceImpl commodityServiceImpl,
+            CommodityObjectServiceImpl commodityObjectServiceImpl) {
         super();
         this.commodityServiceImpl = commodityServiceImpl;
+        this.commodityObjectServiceImpl = commodityObjectServiceImpl;
     }
 
     @PostMapping("/Commodity/Sell")
@@ -131,7 +137,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = commodityObjectServiceImpl
                     .getListSellClient(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List commodity sell by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
@@ -154,7 +160,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = commodityObjectServiceImpl
                     .getListImportClient(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
@@ -178,7 +184,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = commodityObjectServiceImpl
                     .getListBuySupplier(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
@@ -202,7 +208,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = commodityObjectServiceImpl
                     .getListExportSupplier(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
@@ -226,7 +232,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromDateToDto dateFromDateToDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = commodityObjectServiceImpl
                     .getListSellCounter(modelMapper.map(dateFromDateToDto, DateFromDateTo.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
