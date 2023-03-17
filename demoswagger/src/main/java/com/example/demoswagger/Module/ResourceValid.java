@@ -92,4 +92,13 @@ public class ResourceValid {
             throw new ResourceException(e.getMessage());
         }
     }
+
+    public static double withLargeIntegers(double value) {
+        try {
+            DecimalFormat df = new DecimalFormat("###,###,###");
+            return new Double(df.format(value));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
 }
