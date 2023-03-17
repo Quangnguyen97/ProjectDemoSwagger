@@ -1,4 +1,4 @@
-package com.example.demoswagger.SQLServer.Debt;
+package com.example.demoswagger.SQLServer.Revenue;
 
 import java.util.List;
 
@@ -7,36 +7,36 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DebtMap {
+public class RevenueMap {
 
     private int order;
     private String code;
     private String name;
     private double value;
-    private String codeType;
-    private List<DebtMapDetail> detail;
+    private String type;
+    private List<RevenueMapDetail> detail;
 
-    public DebtMap() {
+    public RevenueMap() {
         super();
     }
 
-    public DebtMap(int order, String code, String name, double value, String codeType) {
+    public RevenueMap(int order, String code, String name, double value, String type) {
         super();
         this.order = order;
         this.code = code;
         this.name = name;
         this.value = value;
-        this.codeType = codeType;
+        this.type = type;
         this.detail = null;
     }
 
-    public DebtMap(int order, String code, String name, double value, String codeType, List<DebtMapDetail> detail) {
+    public RevenueMap(int order, String code, String name, double value, String type, List<RevenueMapDetail> detail) {
         super();
         this.order = order;
         this.code = code;
         this.name = name;
         this.value = value;
-        this.codeType = codeType;
+        this.type = type;
         this.detail = detail;
     }
 }

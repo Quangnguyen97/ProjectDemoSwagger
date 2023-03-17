@@ -12,13 +12,13 @@ public class Debt {
     private String name;
     private double value;
 
-    private Integer type;
+    private int type;
 
     public Debt() {
         super();
     }
 
-    public Debt(int order, String code, String name, double value, Integer type) {
+    public Debt(int order, String code, String name, double value, int type) {
         super();
         this.order = order;
         this.code = code;

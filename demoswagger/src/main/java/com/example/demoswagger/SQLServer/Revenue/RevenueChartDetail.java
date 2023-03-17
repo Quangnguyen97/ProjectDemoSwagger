@@ -1,4 +1,4 @@
-package com.example.demoswagger.SQLServer.Debt;
+package com.example.demoswagger.SQLServer.Revenue;
 
 import java.sql.Date;
 
@@ -9,36 +9,28 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DebtChartDetail {
+public class RevenueChartDetail {
 
+    private int order;
     private String code;
     private String name;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date date;
 
-    private double begin;
-    private double incurred;
-    private double pay;
     private double value;
     private int type;
-    private int type2;
 
-    public DebtChartDetail() {
+    public RevenueChartDetail() {
         super();
     }
 
-    public DebtChartDetail(String code, String name, Date date, double begin, double incurred, double pay,
-            double value, int type, int type2) {
+    public RevenueChartDetail(int order, String code, String name, Date date, double value, int type) {
         super();
         this.code = code;
         this.name = name;
         this.date = date;
-        this.begin = begin;
-        this.incurred = incurred;
-        this.pay = pay;
         this.value = value;
         this.type = type;
-        this.type2 = type2;
     }
 }

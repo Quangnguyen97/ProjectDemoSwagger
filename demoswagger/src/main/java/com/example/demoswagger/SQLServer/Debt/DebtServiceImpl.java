@@ -290,7 +290,7 @@ public class DebtServiceImpl implements DebtService {
             for (DebtMap response : listResponse) {
                 BodyParameterSecond paramDetail = new BodyParameterSecond(
                         param.getDateTo(),
-                        response.getType(),
+                        response.getCodeType(),
                         response.getCode());
                 response.setDetail(getListMapClientNegativeDetail(paramDetail));
             }
@@ -348,7 +348,7 @@ public class DebtServiceImpl implements DebtService {
             for (DebtMap response : listResponse) {
                 BodyParameterSecond paramDetail = new BodyParameterSecond(
                         param.getDateTo(),
-                        response.getType(),
+                        response.getCodeType(),
                         response.getCode());
                 response.setDetail(getListMapClientPositiveDetail(paramDetail));
             }
@@ -406,7 +406,7 @@ public class DebtServiceImpl implements DebtService {
             for (DebtMap response : listResponse) {
                 BodyParameterSecond paramDetail = new BodyParameterSecond(
                         param.getDateTo(),
-                        response.getType(),
+                        response.getCodeType(),
                         response.getCode());
                 response.setDetail(getListMapSupplierNegativeDetail(paramDetail));
             }
@@ -464,7 +464,7 @@ public class DebtServiceImpl implements DebtService {
             for (DebtMap response : listResponse) {
                 BodyParameterSecond paramDetail = new BodyParameterSecond(
                         param.getDateTo(),
-                        response.getType(),
+                        response.getCodeType(),
                         response.getCode());
                 response.setDetail(getListMapSupplierPositiveDetail(paramDetail));
             }
