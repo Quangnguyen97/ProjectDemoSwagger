@@ -163,6 +163,82 @@ public class DebtController {
         }
     }
 
+    @PostMapping("/DebtChart/Pay")
+    public ResponseEntity<ResponseDto> getPayChart(@RequestBody @Valid DateToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtChart> listResponse = debtServiceImpl
+                    .getListPayChart(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List pay debt chart " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtChart response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtChartDetail/Pay")
+    public ResponseEntity<ResponseDto> getPayChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtChartDetail> listResponse = debtServiceImpl
+                    .getListPayChartDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCode(),
+                            param.getCodeRest()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List pay debt chart detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtChartDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtChartWithDetail/Pay")
+    public ResponseEntity<ResponseDto> getPayChartWithDetail(@RequestBody @Valid DateToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtChart> listResponse = debtServiceImpl
+                    .getListPayChartWithDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List pay debt chart with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtChart response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     private ResponseEntity<ResponseDto> HandleHttpMessageException(
             HttpMessageNotReadableException exception) {

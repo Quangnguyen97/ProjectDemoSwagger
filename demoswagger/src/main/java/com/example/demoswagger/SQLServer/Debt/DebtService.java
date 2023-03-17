@@ -19,9 +19,11 @@ public interface DebtService {
 
     List<DebtChart> getListCollectChartWithDetail(BodyParameterFirst param);
 
-    // List<Debt> getListPayChart(BodyParameterFirst param);
+    List<DebtChart> getListPayChart(BodyParameterFirst param);
 
-    // List<DebtChartDetail> getListPayChartDetail(BodyParameterFirst param);
+    List<DebtChartDetail> getListPayChartDetail(BodyParameterFirst param);
+
+    List<DebtChart> getListPayChartWithDetail(BodyParameterFirst param);
 
     // Code map
     // List<Debt> getListMapClientNegative(BodyParameterSecond param);
