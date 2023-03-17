@@ -33,18 +33,18 @@ public class UserController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserServiceImpl serviceImpl;
 
-    public UserController(UserServiceImpl userServiceImpl) {
+    public UserController(UserServiceImpl serviceImpl) {
         super();
-        this.userServiceImpl = userServiceImpl;
+        this.serviceImpl = serviceImpl;
     }
 
     @GetMapping("/User")
     public ResponseEntity<ResponseDto> getAllUsers() {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<User> listUser = userServiceImpl.getAllUsers()
+            List<User> listUser = serviceImpl.getAllUsers()
                     .stream()
                     .map(post -> modelMapper.map(post, User.class))
                     .collect(Collectors.toList());
@@ -69,7 +69,7 @@ public class UserController {
     public ResponseEntity<ResponseDto> getUserByUserId(@PathVariable(name = "userId") Long userId) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            User user = userServiceImpl.getUserByUserId(userId);
+            User user = serviceImpl.getUserByUserId(userId);
             if (user == null) {
                 throw new ResourceException("User " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -89,7 +89,7 @@ public class UserController {
     public ResponseEntity<ResponseDto> saveUser(@RequestBody @Valid UserDto userDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            User user = userServiceImpl.saveUser(modelMapper.map(userDto, User.class));
+            User user = serviceImpl.saveUser(modelMapper.map(userDto, User.class));
             if (user == null) {
                 throw new ResourceException("User created failed");
             }
@@ -110,7 +110,7 @@ public class UserController {
             @RequestBody @Valid UserDto userDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            User user = userServiceImpl.updateUser(modelMapper.map(userDto, User.class), userId);
+            User user = serviceImpl.updateUser(modelMapper.map(userDto, User.class), userId);
             if (user == null) {
                 throw new ResourceException("User updated failed");
             }
@@ -130,7 +130,7 @@ public class UserController {
     public ResponseEntity<ResponseDto> deleteUser(@PathVariable(name = "userId") Long userId) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            if (userServiceImpl.deleteUser(userId)) {
+            if (serviceImpl.deleteUser(userId)) {
                 ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.ACCEPTED.value(),
                         HttpStatus.ACCEPTED.getReasonPhrase(), "User deleted successfully", null);
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(ResponseDto);

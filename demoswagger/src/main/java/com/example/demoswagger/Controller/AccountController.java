@@ -33,18 +33,18 @@ public class AccountController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private AccountServiceImpl accountServiceImpl;
+    private AccountServiceImpl serviceImpl;
 
-    public AccountController(AccountServiceImpl accountServiceImpl) {
+    public AccountController(AccountServiceImpl serviceImpl) {
         super();
-        this.accountServiceImpl = accountServiceImpl;
+        this.serviceImpl = serviceImpl;
     }
 
     @GetMapping("/User/{userId}/Account")
     public ResponseEntity<ResponseDto> getAllAccounts(@PathVariable(name = "userId") long userId) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Account> listAccount = accountServiceImpl.getByUserId(userId)
+            List<Account> listAccount = serviceImpl.getByUserId(userId)
                     .stream()
                     .map(post -> modelMapper.map(post, Account.class))
                     .collect(Collectors.toList());
@@ -70,7 +70,7 @@ public class AccountController {
             @PathVariable(name = "accountNumber") int accountNumber) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            Account account = accountServiceImpl.getByUserIdAndAccountNumber(userId, accountNumber);
+            Account account = serviceImpl.getByUserIdAndAccountNumber(userId, accountNumber);
             if (account == null) {
                 throw new ResourceException("Account " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -91,7 +91,7 @@ public class AccountController {
             @RequestBody @Valid AccountDto accountDto) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            Account account = accountServiceImpl.saveAccount(userId, modelMapper.map(accountDto, Account.class));
+            Account account = serviceImpl.saveAccount(userId, modelMapper.map(accountDto, Account.class));
             if (account == null) {
                 throw new ResourceException("Account created failed");
             }
@@ -112,7 +112,7 @@ public class AccountController {
             @RequestBody @Valid AccountDto accountDto, @PathVariable(name = "accountNumber") int accountNumber) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            Account account = accountServiceImpl.updateAccount(userId, modelMapper.map(accountDto, Account.class),
+            Account account = serviceImpl.updateAccount(userId, modelMapper.map(accountDto, Account.class),
                     accountNumber);
             if (account == null) {
                 throw new ResourceException("Account updated failed");
@@ -134,7 +134,7 @@ public class AccountController {
             @PathVariable(name = "accountNumber") int accountNumber) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            if (accountServiceImpl.deleteAccount(userId, accountNumber)) {
+            if (serviceImpl.deleteAccount(userId, accountNumber)) {
                 ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.ACCEPTED.value(),
                         HttpStatus.ACCEPTED.getReasonPhrase(), "Account deleted successfully", null);
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(ResponseDto);

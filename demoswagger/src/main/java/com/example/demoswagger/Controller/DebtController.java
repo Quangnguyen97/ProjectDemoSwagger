@@ -31,11 +31,11 @@ public class DebtController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private DebtServiceImpl debtServiceImpl;
+    private DebtServiceImpl serviceImpl;
 
-    public DebtController(DebtServiceImpl debtServiceImpl) {
+    public DebtController(DebtServiceImpl serviceImpl) {
         super();
-        this.debtServiceImpl = debtServiceImpl;
+        this.serviceImpl = serviceImpl;
     }
 
     @ApiOperation(value = "Danh sách công nợ phải THU")
@@ -43,7 +43,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getCollectDebt(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Debt> listResponse = debtServiceImpl
+            List<Debt> listResponse = serviceImpl
                     .getListCollectDebt(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -68,7 +68,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getPayDebt(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Debt> listResponse = debtServiceImpl
+            List<Debt> listResponse = serviceImpl
                     .getListPayDebt(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -94,7 +94,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getCollectChart(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtChart> listResponse = debtServiceImpl
+            List<DebtChart> listResponse = serviceImpl
                     .getListCollectChart(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -119,7 +119,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getCollectChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtChartDetail> listResponse = debtServiceImpl
+            List<DebtChartDetail> listResponse = serviceImpl
                     .getListCollectChartDetail(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo(),
@@ -147,7 +147,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getCollectChartWithDetail(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtChart> listResponse = debtServiceImpl
+            List<DebtChart> listResponse = serviceImpl
                     .getListCollectChartWithDetail(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -173,7 +173,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getPayChart(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtChart> listResponse = debtServiceImpl
+            List<DebtChart> listResponse = serviceImpl
                     .getListPayChart(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -198,7 +198,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getPayChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtChartDetail> listResponse = debtServiceImpl
+            List<DebtChartDetail> listResponse = serviceImpl
                     .getListPayChartDetail(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo(),
@@ -226,7 +226,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getPayChartWithDetail(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtChart> listResponse = debtServiceImpl
+            List<DebtChart> listResponse = serviceImpl
                     .getListPayChartWithDetail(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
@@ -253,7 +253,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapClientNegative(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapClientNegative(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -279,7 +279,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapClientNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMapDetail> listResponse = debtServiceImpl
+            List<DebtMapDetail> listResponse = serviceImpl
                     .getListMapClientNegativeDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType(),
@@ -307,7 +307,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapClientNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapClientNegativeWithDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -334,7 +334,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapClientPositive(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapClientPositive(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -360,7 +360,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapClientPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMapDetail> listResponse = debtServiceImpl
+            List<DebtMapDetail> listResponse = serviceImpl
                     .getListMapClientPositiveDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType(),
@@ -388,7 +388,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapClientPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapClientPositiveWithDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -415,7 +415,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapSupplierNegative(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapSupplierNegative(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -442,7 +442,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapSupplierNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMapDetail> listResponse = debtServiceImpl
+            List<DebtMapDetail> listResponse = serviceImpl
                     .getListMapSupplierNegativeDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType(),
@@ -470,7 +470,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapSupplierNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapSupplierNegativeWithDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -497,7 +497,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapSupplierPositive(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapSupplierPositive(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
@@ -524,7 +524,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapSupplierPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMapDetail> listResponse = debtServiceImpl
+            List<DebtMapDetail> listResponse = serviceImpl
                     .getListMapSupplierPositiveDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType(),
@@ -552,7 +552,7 @@ public class DebtController {
     public ResponseEntity<ResponseDto> getMapSupplierPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<DebtMap> listResponse = debtServiceImpl
+            List<DebtMap> listResponse = serviceImpl
                     .getListMapSupplierPositiveWithDetail(modelMapper.map(param, new BodyParameterSecond(
                             param.getDateTo(),
                             param.getCodeType()).getClass()));

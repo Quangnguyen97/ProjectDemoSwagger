@@ -26,18 +26,18 @@ public class NotificationController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private NotificationServiceImpl notificationServiceImpl;
+    private NotificationServiceImpl serviceImpl;
 
-    public NotificationController(NotificationServiceImpl notificationServiceImpl) {
+    public NotificationController(NotificationServiceImpl serviceImpl) {
         super();
-        this.notificationServiceImpl = notificationServiceImpl;
+        this.serviceImpl = serviceImpl;
     }
 
     @GetMapping("/Notification/Promotion")
     public ResponseEntity<ResponseDto> pushPromotion() {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<String> listToken = notificationServiceImpl.pushPromotion();
+            List<String> listToken = serviceImpl.pushPromotion();
             if (listToken.isEmpty()) {
                 throw new ResourceException("List token " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
@@ -59,7 +59,7 @@ public class NotificationController {
     public ResponseEntity<ResponseDto> pushAll() {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Notification> listNotification = notificationServiceImpl.pushAll();
+            List<Notification> listNotification = serviceImpl.pushAll();
             if (listNotification.isEmpty()) {
                 throw new ResourceException("List notification " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }

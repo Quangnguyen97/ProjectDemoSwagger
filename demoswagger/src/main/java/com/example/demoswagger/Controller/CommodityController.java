@@ -30,11 +30,11 @@ public class CommodityController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private CommodityServiceImpl commodityServiceImpl;
+    private CommodityServiceImpl serviceImpl;
 
-    public CommodityController(CommodityServiceImpl commodityServiceImpl) {
+    public CommodityController(CommodityServiceImpl serviceImpl) {
         super();
-        this.commodityServiceImpl = commodityServiceImpl;
+        this.serviceImpl = serviceImpl;
     }
 
     @ApiOperation(value = "Danh sách hàng hóa bán")
@@ -42,7 +42,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListSellCommod(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -68,7 +68,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListBuyCommod(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -94,7 +94,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListImportCommod(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -120,7 +120,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListExportCommod(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -146,7 +146,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListSellClient(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -172,7 +172,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListImportClient(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -199,7 +199,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListBuySupplier(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -226,7 +226,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListExportSupplier(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
@@ -253,7 +253,7 @@ public class CommodityController {
     public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<Commodity> listResponse = commodityServiceImpl
+            List<Commodity> listResponse = serviceImpl
                     .getListSellCounter(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
