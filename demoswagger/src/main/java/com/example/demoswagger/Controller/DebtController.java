@@ -47,7 +47,7 @@ public class DebtController {
                     .getListCollectDebt(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List collect debt " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Debt response : listResponse) {
@@ -72,7 +72,7 @@ public class DebtController {
                     .getListPayDebt(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List pay debt " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Debt response : listResponse) {
@@ -98,7 +98,7 @@ public class DebtController {
                     .getListCollectChart(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List collect debt chart " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChart response : listResponse) {
@@ -126,7 +126,7 @@ public class DebtController {
                             param.getCode(),
                             param.getCodeRest()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List collect debt chart detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChartDetail response : listResponse) {
@@ -151,8 +151,7 @@ public class DebtController {
                     .getListCollectChartWithDetail(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List collect debt chart with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChart response : listResponse) {
@@ -177,7 +176,7 @@ public class DebtController {
                     .getListPayChart(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List pay debt chart " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChart response : listResponse) {
@@ -205,7 +204,7 @@ public class DebtController {
                             param.getCode(),
                             param.getCodeRest()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List pay debt chart detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChartDetail response : listResponse) {
@@ -230,8 +229,7 @@ public class DebtController {
                     .getListPayChartWithDetail(modelMapper.map(param, new BodyParameterFirst(
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List pay debt chart with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChart response : listResponse) {
@@ -249,7 +247,7 @@ public class DebtController {
 
     // Code map
     @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG ÂM theo mã ánh xạ")
-    @PostMapping("/DebtMapClient/Negative")
+    @PostMapping("/DebtMap/Client/Negative")
     public ResponseEntity<ResponseDto> getMapClientNegative(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -258,7 +256,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List debt map client negative " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -275,7 +273,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG ÂM theo mã ánh xạ chi tiết")
-    @PostMapping("/DebtMapClient/Negative/Detail")
+    @PostMapping("/DebtMap/Client/Negative/Detail")
     public ResponseEntity<ResponseDto> getMapClientNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -285,8 +283,7 @@ public class DebtController {
                             param.getCodeType(),
                             param.getCodeValue()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map client negative detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMapDetail response : listResponse) {
@@ -303,7 +300,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG ÂM bao gồm chi tiết theo mã ánh xạ")
-    @PostMapping("/DebtMapClientWithDetail/Negative")
+    @PostMapping("/DebtMap/ClientWithDetail/Negative")
     public ResponseEntity<ResponseDto> getMapClientNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -312,8 +309,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map client negative with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -330,7 +326,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG DƯƠNG theo mã ánh xạ")
-    @PostMapping("/DebtMapClient/Positive")
+    @PostMapping("/DebtMap/Client/Positive")
     public ResponseEntity<ResponseDto> getMapClientPositive(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -339,7 +335,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List debt map client positive " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -356,7 +352,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG DƯƠNG theo mã ánh xạ chi tiết")
-    @PostMapping("/DebtMapClient/Positive/Detail")
+    @PostMapping("/DebtMap/Client/Positive/Detail")
     public ResponseEntity<ResponseDto> getMapClientPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -366,8 +362,7 @@ public class DebtController {
                             param.getCodeType(),
                             param.getCodeValue()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map client positive detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMapDetail response : listResponse) {
@@ -384,7 +379,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG DƯƠNG bao gồm chi tiết theo mã ánh xạ")
-    @PostMapping("/DebtMapClientWithDetail/Positive")
+    @PostMapping("/DebtMap/ClientWithDetail/Positive")
     public ResponseEntity<ResponseDto> getMapClientPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -393,8 +388,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map client positive with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -411,7 +405,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP ÂM theo mã ánh xạ")
-    @PostMapping("/DebtMapSupplier/Negative")
+    @PostMapping("/DebtMap/Supplier/Negative")
     public ResponseEntity<ResponseDto> getMapSupplierNegative(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -420,8 +414,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map supplier negative " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -438,7 +431,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP ÂM theo mã ánh xạ chi tiết")
-    @PostMapping("/DebtMapSupplier/Negative/Detail")
+    @PostMapping("/DebtMap/Supplier/Negative/Detail")
     public ResponseEntity<ResponseDto> getMapSupplierNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -448,8 +441,7 @@ public class DebtController {
                             param.getCodeType(),
                             param.getCodeValue()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map supplier negative detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMapDetail response : listResponse) {
@@ -466,7 +458,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP ÂM bao gồm chi tiết theo mã ánh xạ")
-    @PostMapping("/DebtMapSupplierWithDetail/Negative")
+    @PostMapping("/DebtMap/SupplierWithDetail/Negative")
     public ResponseEntity<ResponseDto> getMapSupplierNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -475,8 +467,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map supplier negative with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -493,7 +484,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP DƯƠNG theo mã ánh xạ")
-    @PostMapping("/DebtMapSupplier/Positive")
+    @PostMapping("/DebtMap/Supplier/Positive")
     public ResponseEntity<ResponseDto> getMapSupplierPositive(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -502,8 +493,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map supplier positive " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {
@@ -520,7 +510,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP DƯƠNG theo mã ánh xạ chi tiết")
-    @PostMapping("/DebtMapSupplier/Positive/Detail")
+    @PostMapping("/DebtMap/Supplier/Positive/Detail")
     public ResponseEntity<ResponseDto> getMapSupplierPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -530,8 +520,7 @@ public class DebtController {
                             param.getCodeType(),
                             param.getCodeValue()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map supplier positive detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMapDetail response : listResponse) {
@@ -548,7 +537,7 @@ public class DebtController {
     }
 
     @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP DƯƠNG bao gồm chi tiết theo mã ánh xạ")
-    @PostMapping("/DebtMapSupplierWithDetail/Positive")
+    @PostMapping("/DebtMap/SupplierWithDetail/Positive")
     public ResponseEntity<ResponseDto> getMapSupplierPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -557,8 +546,7 @@ public class DebtController {
                             param.getDateTo(),
                             param.getCodeType()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List debt map supplier positive with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtMap response : listResponse) {

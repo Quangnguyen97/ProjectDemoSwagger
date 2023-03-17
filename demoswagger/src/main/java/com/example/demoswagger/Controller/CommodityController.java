@@ -47,7 +47,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List sell commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -73,7 +73,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List buy commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -99,7 +99,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List import commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -125,7 +125,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List export commodity " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -151,7 +151,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException("List commodity sell by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -177,8 +177,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List commodity import by client " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -204,8 +203,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List commodity buy by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -231,8 +229,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List commodity export by supplier " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
@@ -258,8 +255,7 @@ public class CommodityController {
                             param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
-                throw new ResourceException(
-                        "List commodity sell by counter " + HttpStatus.NOT_FOUND.getReasonPhrase());
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
             List<Object> listObject = new ArrayList<Object>();
             for (Commodity response : listResponse) {
