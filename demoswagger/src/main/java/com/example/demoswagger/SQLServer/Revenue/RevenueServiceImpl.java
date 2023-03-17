@@ -330,7 +330,7 @@ public class RevenueServiceImpl implements RevenueService {
                     + mDateFrom + "," + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
             return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
-                    resource.getString("ThongTinDoiTuong"),
+                    resource.getString("ThongTinHangHoa"),
                     resource.getDouble("SoTien")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -390,7 +390,7 @@ public class RevenueServiceImpl implements RevenueService {
                     + mDateFrom + "," + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
             return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
-                    resource.getString("ThongTinDoiTuong"),
+                    resource.getString("ThongTinHangHoa"),
                     resource.getDouble("SoTien")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
