@@ -1,7 +1,11 @@
 package com.example.demoswagger.SQLServer.Debt;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -9,12 +13,16 @@ import org.springframework.stereotype.Service;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.SQLServer.BodyParameterFirst;
 import com.example.demoswagger.SQLServer.BodyParameterSecond;
+import com.example.demoswagger.SQLServer.DateFromToCodeRestDto;
 
 @Service
 public class DebtServiceImpl implements DebtService {
 
     private String mDateFrom, mDateTo, mCode = "";
     private Integer mCodeRest;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -60,7 +68,7 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<Debt> getListCollectChart(BodyParameterFirst param) {
+    public List<DebtChart> getListCollectChart(BodyParameterFirst param) {
         try {
             // Check error field
             if (!CheckDateTo(param)) {
@@ -68,13 +76,37 @@ public class DebtServiceImpl implements DebtService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_TopChart_CongNoThu " + mDateTo + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new Debt(
+            List<DebtChart> listResponse = jdbcTemplate.query(sql, (resource, rowNum) -> new DebtChart(
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
                     resource.getDouble("SoTien"),
                     resource.getDouble("TyTrong"),
                     resource.getInt("IsCodeRest")));
+            if (listResponse.stream()
+                    .max(Comparator.comparing(DebtChart::getCodeRest))
+                    .orElseThrow(NoSuchElementException::new).getCodeRest() == 1) {
+                String mCode = "";
+                for (DebtChart response : listResponse) {
+                    if (response.getCodeRest() == 0) {
+                        if (mCode != "") {
+                            mCode = mCode + "," + response.getCode();
+                        } else {
+                            mCode = response.getCode();
+                        }
+                    }
+                }
+                List<DebtChart> listReturn = new ArrayList<DebtChart>();
+                for (DebtChart response : listResponse) {
+                    if (response.getCodeRest() == 1) {
+                        response.setCode(mCode);
+                    }
+                    listReturn.add(response);
+                }
+                return listReturn;
+            } else {
+                return listResponse;
+            }
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -100,6 +132,24 @@ public class DebtServiceImpl implements DebtService {
                     resource.getDouble("SoDuCK"),
                     resource.getInt("Loai"),
                     resource.getInt("Loai2")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<DebtChart> getListCollectChartWithDetail(BodyParameterFirst param) {
+        try {
+            List<DebtChart> listResponse = getListCollectChart(param);
+            for (DebtChart response : listResponse) {
+                response.setDetail(getListCollectChartDetail(modelMapper.map(DateFromToCodeRestDto.class,
+                        new BodyParameterFirst(
+                                "",
+                                param.getDateTo(),
+                                response.getCode(),
+                                response.getCodeRest()).getClass())));
+            }
+            return listResponse;
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
