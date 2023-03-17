@@ -13,30 +13,31 @@ public class RevenueMap {
     private String code;
     private String name;
     private double value;
-    private String type;
+    private String codeType;
     private List<RevenueMapDetail> detail;
 
     public RevenueMap() {
         super();
     }
 
-    public RevenueMap(int order, String code, String name, double value, String type) {
+    public RevenueMap(int order, String code, String name, double value, String codeType) {
         super();
         this.order = order;
         this.code = code;
         this.name = name;
         this.value = value;
-        this.type = type;
+        this.codeType = codeType;
         this.detail = null;
     }
 
-    public RevenueMap(int order, String code, String name, double value, String type, List<RevenueMapDetail> detail) {
+    public RevenueMap(int order, String code, String name, double value, String codeType,
+            List<RevenueMapDetail> detail) {
         super();
         this.order = order;
         this.code = code;
         this.name = name;
         this.value = value;
-        this.type = type;
+        this.codeType = codeType;
         this.detail = detail;
     }
 }

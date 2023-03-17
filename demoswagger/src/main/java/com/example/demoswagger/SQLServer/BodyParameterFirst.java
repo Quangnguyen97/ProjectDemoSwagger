@@ -20,6 +20,8 @@ public class BodyParameterFirst {
     private String codeType;
     private String codeValue;
 
+    private Integer type;
+
     public BodyParameterFirst() {
         super();
     }
@@ -48,7 +50,6 @@ public class BodyParameterFirst {
         this.dateTo = dateTo;
         this.codeType = codeType;
         this.codeValue = codeValue;
-
     }
 
     public BodyParameterFirst(String dateFrom, String dateTo, String code, Integer codeRest) {
@@ -66,5 +67,14 @@ public class BodyParameterFirst {
         this.code = code;
         this.codeRest = codeRest;
         this.codeType = codeType;
+    }
+
+    public BodyParameterFirst(String dateFrom, String dateTo, String code, Integer codeRest, Integer type) {
+        super();
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.code = code;
+        this.codeRest = codeRest;
+        this.type = type;
     }
 }

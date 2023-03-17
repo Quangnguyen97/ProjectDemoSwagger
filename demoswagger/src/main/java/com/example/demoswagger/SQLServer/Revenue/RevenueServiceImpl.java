@@ -1,4 +1,4 @@
-package com.example.demoswagger.SQLServer.Debt;
+package com.example.demoswagger.SQLServer.Revenue;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,65 +13,25 @@ import com.example.demoswagger.Module.*;
 import com.example.demoswagger.SQLServer.*;
 
 @Service
-public class DebtServiceImpl implements DebtService {
+public class RevenueServiceImpl implements RevenueService {
 
     private String mDateFrom, mDateTo, mCode, mCodeValue, mCodeType;
-    private Integer mCodeRest;
+    private Integer mCodeRest, mType;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
-    public List<Debt> getListCollectDebt(BodyParameterFirst param) {
-        try {
-            // Check error field
-            if (!CheckDateTo(param.getDateTo())) {
-                throw new ResourceException(
-                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
-            }
-            String sql = "EXEC sp_GETTBL_ForAndroid_CongNoThu " + mDateTo + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new Debt(
-                    resource.getInt("SapXep"),
-                    resource.getString("MaDoiTuong"),
-                    resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
-                    resource.getInt("Loai")));
-        } catch (Exception e) {
-            throw new ResourceException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<Debt> getListPayDebt(BodyParameterFirst param) {
-        try {
-            // Check error field
-            if (!CheckDateTo(param.getDateTo())) {
-                throw new ResourceException(
-                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
-            }
-            String sql = "EXEC sp_GETTBL_ForAndroid_CongNoTra " + mDateTo + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new Debt(
-                    resource.getInt("SapXep"),
-                    resource.getString("MaDoiTuong"),
-                    resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
-                    resource.getInt("Loai")));
-        } catch (Exception e) {
-            throw new ResourceException(e.getMessage());
-        }
-    }
-
     // Top chart
     @Override
-    public List<DebtChart> getListCollectChart(BodyParameterFirst param) {
+    public List<RevenueChart> getListChartClientNegative(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())) {
                 throw new ResourceException(
-                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_TopChart_CongNoThu " + mDateTo + "";
-            List<DebtChart> listResponse = jdbcTemplate.query(sql, (resource, rowNum) -> new DebtChart(
+            String sql = "EXEC sp_GETTBL_ForAndroid_TopChart_DoanhSoKhachHang_Am " + mDateFrom + ", " + mDateTo + "";
+            List<RevenueChart> listResponse = jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueChart(
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
@@ -79,10 +39,10 @@ public class DebtServiceImpl implements DebtService {
                     resource.getDouble("TyTrong"),
                     resource.getInt("IsCodeRest")));
             if (listResponse.stream()
-                    .max(Comparator.comparing(DebtChart::getCodeRest))
+                    .max(Comparator.comparing(RevenueChart::getCodeRest))
                     .orElseThrow(NoSuchElementException::new).getCodeRest() == 1) {
                 String mCode = "";
-                for (DebtChart response : listResponse) {
+                for (RevenueChart response : listResponse) {
                     if (response.getCodeRest() == 0) {
                         if (mCode != "") {
                             mCode = mCode + "," + response.getCode();
@@ -91,8 +51,8 @@ public class DebtServiceImpl implements DebtService {
                         }
                     }
                 }
-                List<DebtChart> listReturn = new ArrayList<DebtChart>();
-                for (DebtChart response : listResponse) {
+                List<RevenueChart> listReturn = new ArrayList<RevenueChart>();
+                for (RevenueChart response : listResponse) {
                     if (response.getCodeRest() == 1) {
                         response.setCode(mCode);
                     }
@@ -108,42 +68,86 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtChartDetail> getListCollectChartDetail(BodyParameterFirst param) {
+    public List<RevenueChart> getListChartClientPositive(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
-                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_CongNoThu_CT "
-                    + mDateFrom + ", " + mDateTo + ", " + mCode + ", " + mCodeRest + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtChartDetail(
+            String sql = "EXEC sp_GETTBL_ForAndroid_TopChart_DoanhSoKhachHang_Duong " + mDateFrom + ", " + mDateTo + "";
+            List<RevenueChart> listResponse = jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueChart(
+                    resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
-                    resource.getString("TenDoiTuong"),
-                    resource.getDate("NgayCTu"),
-                    resource.getDouble("SoDuDK"),
-                    resource.getDouble("PhatSinhNo"),
-                    resource.getDouble("ThanhToan"),
-                    resource.getDouble("SoDuCK"),
-                    resource.getInt("Loai"),
-                    resource.getInt("Loai2")));
+                    resource.getString("ThongTinDoiTuong"),
+                    resource.getDouble("SoTien"),
+                    resource.getDouble("TyTrong"),
+                    resource.getInt("IsCodeRest")));
+            if (listResponse.stream()
+                    .max(Comparator.comparing(RevenueChart::getCodeRest))
+                    .orElseThrow(NoSuchElementException::new).getCodeRest() == 1) {
+                String mCode = "";
+                for (RevenueChart response : listResponse) {
+                    if (response.getCodeRest() == 0) {
+                        if (mCode != "") {
+                            mCode = mCode + "," + response.getCode();
+                        } else {
+                            mCode = response.getCode();
+                        }
+                    }
+                }
+                List<RevenueChart> listReturn = new ArrayList<RevenueChart>();
+                for (RevenueChart response : listResponse) {
+                    if (response.getCodeRest() == 1) {
+                        response.setCode(mCode);
+                    }
+                    listReturn.add(response);
+                }
+                return listReturn;
+            } else {
+                return listResponse;
+            }
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<DebtChart> getListCollectChartWithDetail(BodyParameterFirst param) {
+    public List<RevenueChartDetail> getListChartClientDetail(BodyParameterFirst param) {
         try {
-            List<DebtChart> listResponse = getListCollectChart(param);
-            for (DebtChart response : listResponse) {
+            // Check error field
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())
+                    || !CheckType(param.getType())) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_DoanhSoKhachHang_CT "
+                    + mDateFrom + ", " + mDateTo + ", " + mCode + ", " + mCodeRest + ", " + mType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueChartDetail(
+                    resource.getInt("SapXep"),
+                    resource.getString("MaDoiTuong"),
+                    resource.getString("ThongTinDoiTuong"),
+                    resource.getDate("NgayCTu"),
+                    resource.getDouble("SoTien"),
+                    resource.getInt("Loai")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<RevenueChart> getListChartClientNegativeWithDetail(BodyParameterFirst param) {
+        try {
+            List<RevenueChart> listResponse = getListChartClientNegative(param);
+            for (RevenueChart response : listResponse) {
                 BodyParameterFirst paramDetail = new BodyParameterFirst(
-                        "1900/01/01",
+                        param.getDateFrom(),
                         param.getDateTo(),
                         response.getCode(),
-                        response.getCodeRest());
-                response.setDetail(getListCollectChartDetail(paramDetail));
+                        response.getCodeRest(),
+                        0);
+                response.setDetail(getListChartClientDetail(paramDetail));
             }
             return listResponse;
         } catch (Exception e) {
@@ -152,87 +156,17 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtChart> getListPayChart(BodyParameterFirst param) {
+    public List<RevenueChart> getListChartClientPositiveWithDetail(BodyParameterFirst param) {
         try {
-            // Check error field
-            if (!CheckDateTo(param.getDateTo())) {
-                throw new ResourceException(
-                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
-            }
-            String sql = "EXEC sp_GETTBL_ForAndroid_TopChart_CongNoTra " + mDateTo + "";
-            List<DebtChart> listResponse = jdbcTemplate.query(sql, (resource, rowNum) -> new DebtChart(
-                    resource.getInt("SapXep"),
-                    resource.getString("MaDoiTuong"),
-                    resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
-                    resource.getDouble("TyTrong"),
-                    resource.getInt("IsCodeRest")));
-            if (listResponse.stream()
-                    .max(Comparator.comparing(DebtChart::getCodeRest))
-                    .orElseThrow(NoSuchElementException::new).getCodeRest() == 1) {
-                String mCode = "";
-                for (DebtChart response : listResponse) {
-                    if (response.getCodeRest() == 0) {
-                        if (mCode != "") {
-                            mCode = mCode + "," + response.getCode();
-                        } else {
-                            mCode = response.getCode();
-                        }
-                    }
-                }
-                List<DebtChart> listReturn = new ArrayList<DebtChart>();
-                for (DebtChart response : listResponse) {
-                    if (response.getCodeRest() == 1) {
-                        response.setCode(mCode);
-                    }
-                    listReturn.add(response);
-                }
-                return listReturn;
-            } else {
-                return listResponse;
-            }
-        } catch (Exception e) {
-            throw new ResourceException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<DebtChartDetail> getListPayChartDetail(BodyParameterFirst param) {
-        try {
-            // Check error field
-            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
-                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())) {
-                throw new ResourceException(
-                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
-            }
-            String sql = "EXEC sp_GETTBL_ForAndroid_CongNoTra_CT "
-                    + mDateFrom + ", " + mDateTo + ", " + mCode + ", " + mCodeRest + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtChartDetail(
-                    resource.getString("MaDoiTuong"),
-                    resource.getString("TenDoiTuong"),
-                    resource.getDate("NgayCTu"),
-                    resource.getDouble("SoDuDK"),
-                    resource.getDouble("PhatSinhNo"),
-                    resource.getDouble("ThanhToan"),
-                    resource.getDouble("SoDuCK"),
-                    resource.getInt("Loai"),
-                    resource.getInt("Loai2")));
-        } catch (Exception e) {
-            throw new ResourceException(e.getMessage());
-        }
-    }
-
-    @Override
-    public List<DebtChart> getListPayChartWithDetail(BodyParameterFirst param) {
-        try {
-            List<DebtChart> listResponse = getListPayChart(param);
-            for (DebtChart response : listResponse) {
+            List<RevenueChart> listResponse = getListChartClientPositive(param);
+            for (RevenueChart response : listResponse) {
                 BodyParameterFirst paramDetail = new BodyParameterFirst(
-                        "1900/01/01",
+                        param.getDateFrom(),
                         param.getDateTo(),
                         response.getCode(),
-                        response.getCodeRest());
-                response.setDetail(getListPayChartDetail(paramDetail));
+                        response.getCodeRest(),
+                        1);
+                response.setDetail(getListChartClientDetail(paramDetail));
             }
             return listResponse;
         } catch (Exception e) {
@@ -242,16 +176,17 @@ public class DebtServiceImpl implements DebtService {
 
     // Code map
     @Override
-    public List<DebtMap> getListMapClientNegative(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapClientNegative(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Am "
-                    + mDateTo + ", " + mCodeType + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMap(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_KhachHang_Am "
+                    + mDateFrom + ", " + mDateTo + ", " + mCodeType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMap(
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
@@ -263,17 +198,17 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMapDetail> getListMapClientNegativeDetail(BodyParameterSecond param) {
+    public List<RevenueMapDetail> getListMapClientNegativeDetail(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())
-                    || !CheckCodeValue(param.getCodeValue())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType()) || !CheckCodeValue(param.getCodeValue())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Am_CT "
-                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_KhachHang_Am_CT "
+                    + mDateFrom + "," + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
                     resource.getDouble("SoTien")));
@@ -283,11 +218,12 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapClientNegativeWithDetail(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapClientNegativeWithDetail(BodyParameterFirst param) {
         try {
-            List<DebtMap> listResponse = getListMapClientNegative(param);
-            for (DebtMap response : listResponse) {
-                BodyParameterSecond paramDetail = new BodyParameterSecond(
+            List<RevenueMap> listResponse = getListMapClientNegative(param);
+            for (RevenueMap response : listResponse) {
+                BodyParameterFirst paramDetail = new BodyParameterFirst(
+                        param.getDateFrom(),
                         param.getDateTo(),
                         response.getCodeType(),
                         response.getCode());
@@ -300,16 +236,17 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapClientPositive(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapClientPositive(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Duong "
-                    + mDateTo + ", " + mCodeType + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMap(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_KhachHang_Duong "
+                    + mDateFrom + ", " + mDateTo + ", " + mCodeType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMap(
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
@@ -321,17 +258,17 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMapDetail> getListMapClientPositiveDetail(BodyParameterSecond param) {
+    public List<RevenueMapDetail> getListMapClientPositiveDetail(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())
-                    || !CheckCodeValue(param.getCodeValue())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType()) || !CheckCodeValue(param.getCodeValue())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Duong_CT "
-                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_KhachHang_Duong_CT "
+                    + mDateFrom + "," + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
                     resource.getDouble("SoTien")));
@@ -341,11 +278,12 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapClientPositiveWithDetail(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapClientPositiveWithDetail(BodyParameterFirst param) {
         try {
-            List<DebtMap> listResponse = getListMapClientPositive(param);
-            for (DebtMap response : listResponse) {
-                BodyParameterSecond paramDetail = new BodyParameterSecond(
+            List<RevenueMap> listResponse = getListMapClientPositive(param);
+            for (RevenueMap response : listResponse) {
+                BodyParameterFirst paramDetail = new BodyParameterFirst(
+                        param.getDateFrom(),
                         param.getDateTo(),
                         response.getCodeType(),
                         response.getCode());
@@ -358,38 +296,39 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapSupplierNegative(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapCommodityNegative(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_NhaCungCap_Am "
-                    + mDateTo + ", " + mCodeType + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMap(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_HangHoa_Am "
+                    + mDateFrom + ", " + mDateTo + ", " + mCodeType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMap(
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     resource.getDouble("SoTien"),
-                    "NHACUNGCAP"));
+                    "HANGHOADAURA"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<DebtMapDetail> getListMapSupplierNegativeDetail(BodyParameterSecond param) {
+    public List<RevenueMapDetail> getListMapCommodityNegativeDetail(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())
-                    || !CheckCodeValue(param.getCodeValue())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType()) || !CheckCodeValue(param.getCodeValue())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_NhaCungCap_Am_CT "
-                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_HangHoa_Am_CT "
+                    + mDateFrom + "," + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
                     resource.getDouble("SoTien")));
@@ -399,15 +338,16 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapSupplierNegativeWithDetail(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapCommodityNegativeWithDetail(BodyParameterFirst param) {
         try {
-            List<DebtMap> listResponse = getListMapSupplierNegative(param);
-            for (DebtMap response : listResponse) {
-                BodyParameterSecond paramDetail = new BodyParameterSecond(
+            List<RevenueMap> listResponse = getListMapCommodityNegative(param);
+            for (RevenueMap response : listResponse) {
+                BodyParameterFirst paramDetail = new BodyParameterFirst(
+                        param.getDateFrom(),
                         param.getDateTo(),
                         response.getCodeType(),
                         response.getCode());
-                response.setDetail(getListMapSupplierNegativeDetail(paramDetail));
+                response.setDetail(getListMapCommodityNegativeDetail(paramDetail));
             }
             return listResponse;
         } catch (Exception e) {
@@ -416,38 +356,39 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapSupplierPositive(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapCommodityPositive(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_NhaCungCap_Duong "
-                    + mDateTo + ", " + mCodeType + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMap(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_HangHoa_Duong "
+                    + mDateFrom + ", " + mDateTo + ", " + mCodeType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMap(
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     resource.getDouble("SoTien"),
-                    "NHACUNGCAP"));
+                    "HANGHOADAURA"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public List<DebtMapDetail> getListMapSupplierPositiveDetail(BodyParameterSecond param) {
+    public List<RevenueMapDetail> getListMapCommodityPositiveDetail(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())
-                    || !CheckCodeValue(param.getCodeValue())) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCodeType(param.getCodeType()) || !CheckCodeValue(param.getCodeValue())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
-            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_NhaCungCap_Duong_CT "
-                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
-            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_DoanhSo_HangHoa_Duong_CT "
+                    + mDateFrom + "," + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
                     resource.getDouble("SoTien")));
@@ -457,15 +398,16 @@ public class DebtServiceImpl implements DebtService {
     }
 
     @Override
-    public List<DebtMap> getListMapSupplierPositiveWithDetail(BodyParameterSecond param) {
+    public List<RevenueMap> getListMapCommodityPositiveWithDetail(BodyParameterFirst param) {
         try {
-            List<DebtMap> listResponse = getListMapSupplierPositive(param);
-            for (DebtMap response : listResponse) {
-                BodyParameterSecond paramDetail = new BodyParameterSecond(
+            List<RevenueMap> listResponse = getListMapCommodityPositive(param);
+            for (RevenueMap response : listResponse) {
+                BodyParameterFirst paramDetail = new BodyParameterFirst(
+                        param.getDateFrom(),
                         param.getDateTo(),
                         response.getCodeType(),
                         response.getCode());
-                response.setDetail(getListMapSupplierPositiveDetail(paramDetail));
+                response.setDetail(getListMapCommodityPositiveDetail(paramDetail));
             }
             return listResponse;
         } catch (Exception e) {
@@ -562,6 +504,22 @@ public class DebtServiceImpl implements DebtService {
                 mCodeRest = 0;
             } else {
                 mCodeRest = codeRest;
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean CheckType(int type) {
+        try {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.INTEGER, type)) {
+                return false;
+            }
+            if (ResourceValid.StrIsError(String.valueOf(type))) {
+                mCodeRest = 0;
+            } else {
+                mCodeRest = type;
             }
             return true;
         } catch (Exception e) {
