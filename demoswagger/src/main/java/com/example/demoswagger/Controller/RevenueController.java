@@ -41,11 +41,12 @@ public class RevenueController {
     // Top chart
     @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG ÂM theo biểu đồ")
     @PostMapping("/RevenueChartClient/Negative")
-    public ResponseEntity<ResponseDto> getChartClientNegative(@RequestBody @Valid DateToDto param) {
+    public ResponseEntity<ResponseDto> getChartClientNegative(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<RevenueChart> listResponse = serviceImpl
                     .getListChartClientNegative(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
                             param.getDateTo()).getClass()));
             if (listResponse.isEmpty()) {
                 throw new ResourceException(
@@ -58,6 +59,303 @@ public class RevenueController {
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG DƯƠNG theo biểu đồ")
+    @PostMapping("/RevenueChartClient/Positive")
+    public ResponseEntity<ResponseDto> getChartClientPositive(@RequestBody @Valid DateFromToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueChart> listResponse = serviceImpl
+                    .getListChartClientPositive(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue chart client positive " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueChart response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG theo biểu đồ chi tiết")
+    @PostMapping("/RevenueChartClient/Detail")
+    public ResponseEntity<ResponseDto> getChartClientDetail(@RequestBody @Valid DateFromToCodeRestTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueChartDetail> listResponse = serviceImpl
+                    .getListChartClientDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCode(),
+                            param.getCodeRest(),
+                            param.getType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List List revenue chart client detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueChartDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG ÂM bao gồm chi tiết theo biểu đồ")
+    @PostMapping("/RevenueChartClientWithDetail/Negative")
+    public ResponseEntity<ResponseDto> getChartClientNegativeWithDetail(@RequestBody @Valid DateFromToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueChart> listResponse = serviceImpl
+                    .getListChartClientNegativeWithDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue chart client negative with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueChart response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG DƯƠNG bao gồm chi tiết theo biểu đồ")
+    @PostMapping("/RevenueChartClientWithDetail/Positive")
+    public ResponseEntity<ResponseDto> getChartClientPositiveWithDetail(@RequestBody @Valid DateFromToDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueChart> listResponse = serviceImpl
+                    .getListChartClientPositiveWithDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue chart client positive with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueChart response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    // Code map
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG ÂM theo mã ánh xạ")
+    @PostMapping("/RevenueMapClient/Negative")
+    public ResponseEntity<ResponseDto> getMapClientNegative(@RequestBody @Valid DateFromToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueMap> listResponse = serviceImpl
+                    .getListMapClientNegative(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue map client negative " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG ÂM theo mã ánh xạ chi tiết")
+    @PostMapping("/RevenueMapClient/Negative/Detail")
+    public ResponseEntity<ResponseDto> getMapClientNegativeDetail(@RequestBody @Valid DateFromToTypeValueDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueMapDetail> listResponse = serviceImpl
+                    .getListMapClientNegativeDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCodeType(),
+                            param.getCodeValue()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue map client negative detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueMapDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG ÂM bao gồm chi tiết theo mã ánh xạ")
+    @PostMapping("/DebtMapClientWithDetail/Negative")
+    public ResponseEntity<ResponseDto> getMapClientNegativeWithDetail(@RequestBody @Valid DateFromToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueMap> listResponse = serviceImpl
+                    .getListMapClientNegativeWithDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map client negative with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG DƯƠNG theo mã ánh xạ")
+    @PostMapping("/RevenueMapClient/Positive")
+    public ResponseEntity<ResponseDto> getMapClientPositive(@RequestBody @Valid DateFromToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueMap> listResponse = serviceImpl
+                    .getListMapClientPositive(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue map client positive " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG DƯƠNG theo mã ánh xạ chi tiết")
+    @PostMapping("/RevenueMapClient/Positive/Detail")
+    public ResponseEntity<ResponseDto> getMapClientPositiveDetail(@RequestBody @Valid DateFromToTypeValueDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueMapDetail> listResponse = serviceImpl
+                    .getListMapClientPositiveDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCodeType(),
+                            param.getCodeValue()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List revenue map client positive detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueMapDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách doanh số KHÁCH HÀNG DƯƠNG bao gồm chi tiết theo mã ánh xạ")
+    @PostMapping("/DebtMapClientWithDetail/Positive")
+    public ResponseEntity<ResponseDto> getMapClientPositiveWithDetail(@RequestBody @Valid DateFromToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<RevenueMap> listResponse = serviceImpl
+                    .getListMapClientPositiveWithDetail(modelMapper.map(param, new BodyParameterFirst(
+                            param.getDateFrom(),
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map client positive with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (RevenueMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    private ResponseEntity<ResponseDto> HandleHttpMessageException(
+            HttpMessageNotReadableException exception) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
+                    HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         } catch (Exception e) {
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
