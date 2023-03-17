@@ -94,7 +94,7 @@ public class ResourceValid {
         }
     }
 
-    public static String FormatAmount(double value) {
+    public static String FormatDouble(double value) {
         try {
             DecimalFormat df = new DecimalFormat("#,###");
             return String.valueOf(df.format(value));

@@ -9,15 +9,15 @@ public class Commodity {
 
     private int order;
     private String description;
-    private double quantity;
-    private double amount;
+    private String quantity;
+    private String amount;
     private Integer type;
 
     public Commodity() {
         super();
     }
 
-    public Commodity(int order, String description, double quantity, double amount) {
+    public Commodity(int order, String description, String quantity, String amount) {
         super();
         this.order = order;
         this.description = description;
@@ -26,7 +26,7 @@ public class Commodity {
         this.type = null;
     }
 
-    public Commodity(int order, String description, double quantity, double amount, Integer type) {
+    public Commodity(int order, String description, String quantity, String amount, Integer type) {
         super();
         this.order = order;
         this.description = description;

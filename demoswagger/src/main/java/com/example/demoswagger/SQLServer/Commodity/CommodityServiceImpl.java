@@ -30,8 +30,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -49,8 +49,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -68,8 +68,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -87,8 +87,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -107,8 +107,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -127,8 +127,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -148,8 +148,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -168,8 +168,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -189,8 +189,8 @@ public class CommodityServiceImpl implements CommodityService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new Commodity(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoLuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatDouble(resource.getDouble("SoLuong")),
+                    ResourceValid.FormatDouble(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
