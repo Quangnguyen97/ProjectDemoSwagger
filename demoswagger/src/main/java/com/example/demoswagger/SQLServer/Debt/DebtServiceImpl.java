@@ -300,6 +300,64 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
+    @Override
+    public List<DebtMap> getListMapClientPositive(BodyParameterSecond param) {
+        try {
+            // Check error field
+            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Duong "
+                    + mDateTo + ", " + mCodeType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMap(
+                    resource.getInt("SapXep"),
+                    resource.getString("CodeValue"),
+                    resource.getString("ThongTinNhom"),
+                    resource.getDouble("SoTien"),
+                    "KHACHHANG"));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<DebtMapDetail> getListMapClientPositiveDetail(BodyParameterSecond param) {
+        try {
+            // Check error field
+            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())
+                    || !CheckCodeValue(param.getCodeValue())) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Duong_CT "
+                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinDoiTuong"),
+                    resource.getDouble("SoTien")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<DebtMap> getListMapClientPositiveWithDetail(BodyParameterSecond param) {
+        try {
+            List<DebtMap> listResponse = getListMapClientPositive(param);
+            for (DebtMap response : listResponse) {
+                BodyParameterSecond paramDetail = new BodyParameterSecond(
+                        param.getDateTo(),
+                        response.getType(),
+                        response.getCode());
+                response.setDetail(getListMapClientPositiveDetail(paramDetail));
+            }
+            return listResponse;
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
     private boolean CheckDateTo(String dateTo) {
         try {
             if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {

@@ -31,10 +31,11 @@ public interface DebtService {
 
     List<DebtMap> getListMapClientNegativeWithDetail(BodyParameterSecond param);
 
-    // List<Debt> getListMapClientPositive(BodyParameterSecond param);
+    List<DebtMap> getListMapClientPositive(BodyParameterSecond param);
 
-    // List<DebtMapDetail> getListMapClientPositiveDetail(BodyParameterSecond
-    // param);
+    List<DebtMapDetail> getListMapClientPositiveDetail(BodyParameterSecond param);
+
+    List<DebtMap> getListMapClientPositiveWithDetail(BodyParameterSecond param);
 
     // List<Debt> getListMapSupplierNegative(BodyParameterSecond param);
 

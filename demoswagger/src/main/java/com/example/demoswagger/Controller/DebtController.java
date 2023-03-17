@@ -313,6 +313,84 @@ public class DebtController {
         }
     }
 
+    @PostMapping("/DebtMapClient/Positive")
+    public ResponseEntity<ResponseDto> getMapClientPositive(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapClientPositive(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List debt map client positive " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtMapClient/Positive/Detail")
+    public ResponseEntity<ResponseDto> getMapClientPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMapDetail> listResponse = debtServiceImpl
+                    .getListMapClientPositiveDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType(),
+                            param.getCodeValue()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map client positive detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMapDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtMapClientWithDetail/Positive")
+    public ResponseEntity<ResponseDto> getMapClientPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapClientPositiveWithDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map client positive with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     private ResponseEntity<ResponseDto> HandleHttpMessageException(
             HttpMessageNotReadableException exception) {
