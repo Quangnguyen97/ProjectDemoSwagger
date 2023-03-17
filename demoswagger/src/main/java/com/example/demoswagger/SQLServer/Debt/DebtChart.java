@@ -1,7 +1,6 @@
 package com.example.demoswagger.SQLServer.Debt;
 
 import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +11,9 @@ public class DebtChart {
     private int order;
     private String code;
     private String name;
-    private double value;
+
+    private String value;
+
     private double density;
     private int codeRest;
 
@@ -22,7 +23,7 @@ public class DebtChart {
         super();
     }
 
-    public DebtChart(int order, String code, String name, double value, double density, int codeRest) {
+    public DebtChart(int order, String code, String name, String value, double density, int codeRest) {
         super();
         this.order = order;
         this.code = code;
@@ -33,7 +34,7 @@ public class DebtChart {
         this.detail = null;
     }
 
-    public DebtChart(int order, String code, String name, double value, double density, int codeRest,
+    public DebtChart(int order, String code, String name, String value, double density, int codeRest,
             List<DebtChartDetail> detail) {
         super();
         this.order = order;

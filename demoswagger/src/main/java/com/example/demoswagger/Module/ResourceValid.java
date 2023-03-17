@@ -1,5 +1,6 @@
 package com.example.demoswagger.Module;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import com.google.common.base.Strings;
@@ -93,10 +94,10 @@ public class ResourceValid {
         }
     }
 
-    public static double withLargeIntegers(double value) {
+    public static String FormatAmount(double value) {
         try {
-            DecimalFormat df = new DecimalFormat("###,###,###");
-            return new Double(df.format(value));
+            DecimalFormat df = new DecimalFormat("#,###");
+            return String.valueOf(df.format(value));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

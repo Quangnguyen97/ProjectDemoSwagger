@@ -35,7 +35,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getDouble("TyTrong"),
                     resource.getInt("IsCodeRest")));
             if (listResponse.stream()
@@ -80,7 +80,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getDouble("TyTrong"),
                     resource.getInt("IsCodeRest")));
             if (listResponse.stream()
@@ -129,7 +129,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
                     resource.getDate("NgayCTu"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -190,7 +190,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "KHACHHANG"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -211,7 +211,7 @@ public class RevenueServiceImpl implements RevenueService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -250,7 +250,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "KHACHHANG"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -271,7 +271,7 @@ public class RevenueServiceImpl implements RevenueService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -310,7 +310,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "HANGHOADAURA"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -331,7 +331,7 @@ public class RevenueServiceImpl implements RevenueService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -370,7 +370,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "HANGHOADAURA"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -391,7 +391,7 @@ public class RevenueServiceImpl implements RevenueService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new RevenueMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinHangHoa"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

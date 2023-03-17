@@ -34,7 +34,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -54,7 +54,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getInt("Loai")));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -75,7 +75,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getDouble("TyTrong"),
                     resource.getInt("IsCodeRest")));
             if (listResponse.stream()
@@ -122,10 +122,10 @@ public class DebtServiceImpl implements DebtService {
                     resource.getString("MaDoiTuong"),
                     resource.getString("TenDoiTuong"),
                     resource.getDate("NgayCTu"),
-                    resource.getDouble("SoDuDK"),
-                    resource.getDouble("PhatSinhNo"),
-                    resource.getDouble("ThanhToan"),
-                    resource.getDouble("SoDuCK"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoDuDK")),
+                    ResourceValid.FormatAmount(resource.getDouble("PhatSinhNo")),
+                    ResourceValid.FormatAmount(resource.getDouble("ThanhToan")),
+                    ResourceValid.FormatAmount(resource.getDouble("SoDuCK")),
                     resource.getInt("Loai"),
                     resource.getInt("Loai2")));
         } catch (Exception e) {
@@ -164,7 +164,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("MaDoiTuong"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     resource.getDouble("TyTrong"),
                     resource.getInt("IsCodeRest")));
             if (listResponse.stream()
@@ -211,10 +211,10 @@ public class DebtServiceImpl implements DebtService {
                     resource.getString("MaDoiTuong"),
                     resource.getString("TenDoiTuong"),
                     resource.getDate("NgayCTu"),
-                    resource.getDouble("SoDuDK"),
-                    resource.getDouble("PhatSinhNo"),
-                    resource.getDouble("ThanhToan"),
-                    resource.getDouble("SoDuCK"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoDuDK")),
+                    ResourceValid.FormatAmount(resource.getDouble("PhatSinhNo")),
+                    ResourceValid.FormatAmount(resource.getDouble("ThanhToan")),
+                    ResourceValid.FormatAmount(resource.getDouble("SoDuCK")),
                     resource.getInt("Loai"),
                     resource.getInt("Loai2")));
         } catch (Exception e) {
@@ -255,7 +255,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "KHACHHANG"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -276,7 +276,7 @@ public class DebtServiceImpl implements DebtService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -313,7 +313,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "KHACHHANG"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -334,7 +334,7 @@ public class DebtServiceImpl implements DebtService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -371,7 +371,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "NHACUNGCAP"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -392,7 +392,7 @@ public class DebtServiceImpl implements DebtService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -429,7 +429,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getInt("SapXep"),
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
-                    resource.getDouble("SoTien"),
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien")),
                     "NHACUNGCAP"));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
@@ -450,7 +450,7 @@ public class DebtServiceImpl implements DebtService {
             return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
-                    resource.getDouble("SoTien")));
+                    ResourceValid.FormatAmount(resource.getDouble("SoTien"))));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

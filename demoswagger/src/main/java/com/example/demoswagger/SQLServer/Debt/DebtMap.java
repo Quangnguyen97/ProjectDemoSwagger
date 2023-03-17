@@ -12,7 +12,9 @@ public class DebtMap {
     private int order;
     private String code;
     private String name;
-    private double value;
+
+    private String value;
+
     private String codeType;
     private List<DebtMapDetail> detail;
 
@@ -20,7 +22,7 @@ public class DebtMap {
         super();
     }
 
-    public DebtMap(int order, String code, String name, double value, String codeType) {
+    public DebtMap(int order, String code, String name, String value, String codeType) {
         super();
         this.order = order;
         this.code = code;
@@ -30,7 +32,7 @@ public class DebtMap {
         this.detail = null;
     }
 
-    public DebtMap(int order, String code, String name, double value, String codeType, List<DebtMapDetail> detail) {
+    public DebtMap(int order, String code, String name, String value, String codeType, List<DebtMapDetail> detail) {
         super();
         this.order = order;
         this.code = code;

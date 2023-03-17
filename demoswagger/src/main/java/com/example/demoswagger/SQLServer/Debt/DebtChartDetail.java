@@ -17,10 +17,11 @@ public class DebtChartDetail {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date date;
 
-    private double begin;
-    private double incurred;
-    private double pay;
-    private double value;
+    private String begin;
+    private String incurred;
+    private String pay;
+    private String value;
+
     private int type;
     private int type2;
 
@@ -28,8 +29,8 @@ public class DebtChartDetail {
         super();
     }
 
-    public DebtChartDetail(String code, String name, Date date, double begin, double incurred, double pay,
-            double value, int type, int type2) {
+    public DebtChartDetail(String code, String name, Date date, String begin, String incurred, String pay,
+            String value, int type, int type2) {
         super();
         this.code = code;
         this.name = name;

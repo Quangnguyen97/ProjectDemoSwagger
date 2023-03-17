@@ -9,13 +9,13 @@ public class RevenueMapDetail {
 
     private int order;
     private String description;
-    private double value;
+    private String value;
 
     public RevenueMapDetail() {
         super();
     }
 
-    public RevenueMapDetail(int order, String description, double value) {
+    public RevenueMapDetail(int order, String description, String value) {
         super();
         this.order = order;
         this.description = description;

@@ -9,13 +9,14 @@ public class DebtMapDetail {
 
     private int order;
     private String description;
-    private double value;
+
+    private String value;
 
     public DebtMapDetail() {
         super();
     }
 
-    public DebtMapDetail(int order, String description, double value) {
+    public DebtMapDetail(int order, String description, String value) {
         super();
         this.order = order;
         this.description = description;

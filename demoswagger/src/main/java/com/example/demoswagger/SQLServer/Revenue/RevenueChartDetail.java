@@ -18,14 +18,14 @@ public class RevenueChartDetail {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date date;
 
-    private double value;
+    private String value;
     private int type;
 
     public RevenueChartDetail() {
         super();
     }
 
-    public RevenueChartDetail(int order, String code, String name, Date date, double value, int type) {
+    public RevenueChartDetail(int order, String code, String name, Date date, String value, int type) {
         super();
         this.code = code;
         this.name = name;
