@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
-import com.example.demoswagger.SQLServer.BodyParameterFirst;
-import com.example.demoswagger.SQLServer.DateFromToDto;
-import com.example.demoswagger.SQLServer.Commodity.Commodity;
-import com.example.demoswagger.SQLServer.Commodity.CommodityServiceImpl;
+import com.example.demoswagger.SQLServer.*;
+import com.example.demoswagger.SQLServer.Commodity.*;
 
 @RestController
 public class CommodityController {

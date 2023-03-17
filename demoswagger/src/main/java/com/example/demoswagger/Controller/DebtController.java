@@ -17,13 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
-import com.example.demoswagger.SQLServer.BodyParameterFirst;
-import com.example.demoswagger.SQLServer.DateFromToCodeRestDto;
-import com.example.demoswagger.SQLServer.DateToDto;
-import com.example.demoswagger.SQLServer.Debt.Debt;
-import com.example.demoswagger.SQLServer.Debt.DebtChart;
-import com.example.demoswagger.SQLServer.Debt.DebtChartDetail;
-import com.example.demoswagger.SQLServer.Debt.DebtServiceImpl;
+import com.example.demoswagger.SQLServer.*;
+import com.example.demoswagger.SQLServer.Debt.*;
 
 @RestController
 public class DebtController {
@@ -111,7 +106,7 @@ public class DebtController {
         }
     }
 
-    @PostMapping("/DebtChartDetail/Collect")
+    @PostMapping("/DebtChart/Collect/Detail")
     public ResponseEntity<ResponseDto> getCollectChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -187,7 +182,7 @@ public class DebtController {
         }
     }
 
-    @PostMapping("/DebtChartDetail/Pay")
+    @PostMapping("/DebtChart/Pay/Detail")
     public ResponseEntity<ResponseDto> getPayChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
@@ -227,6 +222,85 @@ public class DebtController {
             }
             List<Object> listObject = new ArrayList<Object>();
             for (DebtChart response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    // Code map
+    @PostMapping("/DebtMapClient/Negative")
+    public ResponseEntity<ResponseDto> getMapClientNegative(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapClientNegative(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List debt map client negative " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtMapClient/Negative/Detail")
+    public ResponseEntity<ResponseDto> getMapClientNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMapDetail> listResponse = debtServiceImpl
+                    .getListMapClientNegativeDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType(),
+                            param.getCodeValue()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map client negative detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMapDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @PostMapping("/DebtMapClientWithDetail/Negative")
+    public ResponseEntity<ResponseDto> getMapClientNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapClientNegativeWithDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map client negative with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
                 listObject.add(response);
             }
             ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),

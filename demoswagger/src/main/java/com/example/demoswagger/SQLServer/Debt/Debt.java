@@ -18,15 +18,6 @@ public class Debt {
         super();
     }
 
-    public Debt(int order, String code, String name, double value) {
-        super();
-        this.order = order;
-        this.code = code;
-        this.name = name;
-        this.value = value;
-        this.type = null;
-    }
-
     public Debt(int order, String code, String name, double value, Integer type) {
         super();
         this.order = order;

@@ -5,7 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -13,16 +12,12 @@ import org.springframework.stereotype.Service;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.SQLServer.BodyParameterFirst;
 import com.example.demoswagger.SQLServer.BodyParameterSecond;
-import com.example.demoswagger.SQLServer.DateFromToCodeRestDto;
 
 @Service
 public class DebtServiceImpl implements DebtService {
 
-    private String mDateFrom, mDateTo, mCode = "";
+    private String mDateFrom, mDateTo, mCode, mCodeValue, mCodeType;
     private Integer mCodeRest;
-
-    @Autowired
-    private ModelMapper modelMapper;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -31,7 +26,7 @@ public class DebtServiceImpl implements DebtService {
     public List<Debt> getListCollectDebt(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param)) {
+            if (!CheckDateTo(param.getDateTo())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
             }
@@ -51,7 +46,7 @@ public class DebtServiceImpl implements DebtService {
     public List<Debt> getListPayDebt(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param)) {
+            if (!CheckDateTo(param.getDateTo())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
             }
@@ -67,11 +62,12 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
+    // Top chart
     @Override
     public List<DebtChart> getListCollectChart(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param)) {
+            if (!CheckDateTo(param.getDateTo())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
             }
@@ -116,7 +112,8 @@ public class DebtServiceImpl implements DebtService {
     public List<DebtChartDetail> getListCollectChartDetail(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateFrom(param) || !CheckDateTo(param) || !CheckCode(param) || !CheckCodeRest(param)) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
@@ -159,7 +156,7 @@ public class DebtServiceImpl implements DebtService {
     public List<DebtChart> getListPayChart(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateTo(param)) {
+            if (!CheckDateTo(param.getDateTo())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "DateTo"));
             }
@@ -204,7 +201,8 @@ public class DebtServiceImpl implements DebtService {
     public List<DebtChartDetail> getListPayChartDetail(BodyParameterFirst param) {
         try {
             // Check error field
-            if (!CheckDateFrom(param) || !CheckDateTo(param) || !CheckCode(param) || !CheckCodeRest(param)) {
+            if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
+                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
@@ -243,15 +241,74 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
-    private boolean CheckDateTo(BodyParameterFirst param) {
+    // Code map
+    @Override
+    public List<DebtMap> getListMapClientNegative(BodyParameterSecond param) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateTo())) {
+            // Check error field
+            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Am "
+                    + mDateTo + ", " + mCodeType + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMap(
+                    resource.getInt("SapXep"),
+                    resource.getString("CodeValue"),
+                    resource.getString("ThongTinNhom"),
+                    resource.getDouble("SoTien"),
+                    "KHACHHANG"));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<DebtMapDetail> getListMapClientNegativeDetail(BodyParameterSecond param) {
+        try {
+            // Check error field
+            if (!CheckDateTo(param.getDateTo()) || !CheckCodeType(param.getCodeType())
+                    || !CheckCodeValue(param.getCodeValue())) {
+                throw new ResourceException(
+                        ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
+            }
+            String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Am_CT "
+                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
+                    resource.getInt("SapXep"),
+                    resource.getString("ThongTinDoiTuong"),
+                    resource.getDouble("SoTien")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<DebtMap> getListMapClientNegativeWithDetail(BodyParameterSecond param) {
+        try {
+            List<DebtMap> listResponse = getListMapClientNegative(param);
+            for (DebtMap response : listResponse) {
+                BodyParameterSecond paramDetail = new BodyParameterSecond(
+                        param.getDateTo(),
+                        response.getType(),
+                        response.getCode());
+                response.setDetail(getListMapClientNegativeDetail(paramDetail));
+            }
+            return listResponse;
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
+    private boolean CheckDateTo(String dateTo) {
+        try {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
                 return false;
             }
-            if (ResourceValid.StrIsError(param.getDateTo())) {
+            if (ResourceValid.StrIsError(dateTo)) {
                 mDateTo = "NULL";
             } else {
-                mDateTo = "'" + param.getDateTo() + "'";
+                mDateTo = "'" + dateTo + "'";
             }
             return true;
         } catch (Exception e) {
@@ -259,15 +316,15 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
-    private boolean CheckDateFrom(BodyParameterFirst param) {
+    private boolean CheckDateFrom(String dateFrom) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getDateFrom())) {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
                 return false;
             }
-            if (ResourceValid.StrIsError(param.getDateFrom())) {
+            if (ResourceValid.StrIsError(dateFrom)) {
                 mDateFrom = "NULL";
             } else {
-                mDateFrom = "'" + param.getDateFrom() + "'";
+                mDateFrom = "'" + dateFrom + "'";
             }
             return true;
         } catch (Exception e) {
@@ -275,15 +332,15 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
-    private boolean CheckCode(BodyParameterFirst param) {
+    private boolean CheckCode(String code) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, param.getCode())) {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, code)) {
                 return false;
             }
-            if (ResourceValid.StrIsError(param.getCode())) {
+            if (ResourceValid.StrIsError(code)) {
                 mCode = "NULL";
             } else {
-                mCode = "'" + param.getCode() + "'";
+                mCode = "'" + code + "'";
             }
             return true;
         } catch (Exception e) {
@@ -291,15 +348,47 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
-    private boolean CheckCodeRest(BodyParameterFirst param) {
+    private boolean CheckCodeValue(String codeValue) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.INTEGER, param.getCodeRest())) {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeValue)) {
                 return false;
             }
-            if (ResourceValid.StrIsError(String.valueOf(param.getCodeRest()))) {
+            if (ResourceValid.StrIsError(codeValue)) {
+                mCodeValue = "NULL";
+            } else {
+                mCodeValue = "'" + codeValue + "'";
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean CheckCodeType(String codeType) {
+        try {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
+                return false;
+            }
+            if (ResourceValid.StrIsError(codeType)) {
+                mCodeType = "NULL";
+            } else {
+                mCodeType = "'" + codeType + "'";
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private boolean CheckCodeRest(int codeRest) {
+        try {
+            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.INTEGER, codeRest)) {
+                return false;
+            }
+            if (ResourceValid.StrIsError(String.valueOf(codeRest))) {
                 mCodeRest = 0;
             } else {
-                mCodeRest = param.getCodeRest();
+                mCodeRest = codeRest;
             }
             return true;
         } catch (Exception e) {
