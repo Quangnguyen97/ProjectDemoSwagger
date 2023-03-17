@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+
 import com.example.demoswagger.Notification.*;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 
+@Api(tags = "Thông báo", description = "Demo test API")
 @RestController
 public class NotificationController {
 

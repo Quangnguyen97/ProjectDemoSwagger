@@ -19,10 +19,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+
 import com.example.demoswagger.User.*;
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 
+@Api(tags = "Người dùng", description = "Demo test API")
 @RestController
 public class UserController {
 

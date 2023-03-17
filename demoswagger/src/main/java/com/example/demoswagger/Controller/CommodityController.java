@@ -14,13 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.*;
 import com.example.demoswagger.SQLServer.Commodity.*;
 
-import io.swagger.annotations.ApiOperation;
-
+@Api(tags = "Hàng hóa", description = "Hàng hóa API")
 @RestController
 public class CommodityController {
 
