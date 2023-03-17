@@ -1,7 +1,11 @@
 package com.example.demoswagger.Response;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Response {
     private int status;
     private String description;
@@ -13,38 +17,6 @@ public class Response {
         this.status = status;
         this.description = description;
         this.message = message;
-        this.response = response;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public List<Object> getResponse() {
-        return response;
-    }
-
-    public void setResponse(List<Object> response) {
         this.response = response;
     }
 }
