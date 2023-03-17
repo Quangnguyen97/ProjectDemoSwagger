@@ -25,6 +25,8 @@ public interface DebtService {
     List<DebtChart> getListPayChartWithDetail(BodyParameterFirst param);
 
     // Code map
+
+    // Client
     List<DebtMap> getListMapClientNegative(BodyParameterSecond param);
 
     List<DebtMapDetail> getListMapClientNegativeDetail(BodyParameterSecond param);
@@ -37,13 +39,16 @@ public interface DebtService {
 
     List<DebtMap> getListMapClientPositiveWithDetail(BodyParameterSecond param);
 
-    // List<Debt> getListMapSupplierNegative(BodyParameterSecond param);
+    // Supplier
+    List<DebtMap> getListMapSupplierNegative(BodyParameterSecond param);
 
-    // List<DebtMapDetail> getListMapSupplierNegativeDetail(BodyParameterSecond
-    // param);
+    List<DebtMapDetail> getListMapSupplierNegativeDetail(BodyParameterSecond param);
 
-    // List<Debt> getListMapSupplierPositive(BodyParameterSecond param);
+    List<DebtMap> getListMapSupplierNegativeWithDetail(BodyParameterSecond param);
 
-    // List<DebtMapDetail> getListMapSupplierPositiveDetail(BodyParameterSecond
-    // param);
+    List<DebtMap> getListMapSupplierPositive(BodyParameterSecond param);
+
+    List<DebtMapDetail> getListMapSupplierPositiveDetail(BodyParameterSecond param);
+
+    List<DebtMap> getListMapSupplierPositiveWithDetail(BodyParameterSecond param);
 }

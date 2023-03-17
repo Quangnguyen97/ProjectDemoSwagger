@@ -410,6 +410,170 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP ÂM theo mã ánh xạ")
+    @PostMapping("/DebtMapSupplier/Negative")
+    public ResponseEntity<ResponseDto> getMapSupplierNegative(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapSupplierNegative(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map supplier negative " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP ÂM theo mã ánh xạ chi tiết")
+    @PostMapping("/DebtMapSupplier/Negative/Detail")
+    public ResponseEntity<ResponseDto> getMapSupplierNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMapDetail> listResponse = debtServiceImpl
+                    .getListMapSupplierNegativeDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType(),
+                            param.getCodeValue()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map supplier negative detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMapDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP ÂM bao gồm chi tiết theo mã ánh xạ")
+    @PostMapping("/DebtMapSupplierWithDetail/Negative")
+    public ResponseEntity<ResponseDto> getMapSupplierNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapSupplierNegativeWithDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map supplier negative with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP DƯƠNG theo mã ánh xạ")
+    @PostMapping("/DebtMapSupplier/Positive")
+    public ResponseEntity<ResponseDto> getMapSupplierPositive(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapSupplierPositive(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map supplier positive " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP DƯƠNG theo mã ánh xạ chi tiết")
+    @PostMapping("/DebtMapSupplier/Positive/Detail")
+    public ResponseEntity<ResponseDto> getMapSupplierPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMapDetail> listResponse = debtServiceImpl
+                    .getListMapSupplierPositiveDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType(),
+                            param.getCodeValue()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map supplier positive detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMapDetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
+    @ApiOperation(value = "Danh sách công nợ NHÀ CUNG CẤP DƯƠNG bao gồm chi tiết theo mã ánh xạ")
+    @PostMapping("/DebtMapSupplierWithDetail/Positive")
+    public ResponseEntity<ResponseDto> getMapSupplierPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<DebtMap> listResponse = debtServiceImpl
+                    .getListMapSupplierPositiveWithDetail(modelMapper.map(param, new BodyParameterSecond(
+                            param.getDateTo(),
+                            param.getCodeType()).getClass()));
+            if (listResponse.isEmpty()) {
+                throw new ResourceException(
+                        "List debt map supplier positive with detail " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (DebtMap response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
     @ExceptionHandler(HttpMessageNotReadableException.class)
     private ResponseEntity<ResponseDto> HandleHttpMessageException(
             HttpMessageNotReadableException exception) {
