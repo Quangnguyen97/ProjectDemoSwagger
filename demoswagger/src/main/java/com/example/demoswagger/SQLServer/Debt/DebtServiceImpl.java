@@ -142,12 +142,12 @@ public class DebtServiceImpl implements DebtService {
         try {
             List<DebtChart> listResponse = getListCollectChart(param);
             for (DebtChart response : listResponse) {
-                response.setDetail(getListCollectChartDetail(modelMapper.map(DateFromToCodeRestDto.class,
-                        new BodyParameterFirst(
-                                "",
-                                param.getDateTo(),
-                                response.getCode(),
-                                response.getCodeRest()).getClass())));
+                BodyParameterFirst paramDetail = new BodyParameterFirst(
+                        "1900/01/01",
+                        param.getDateTo(),
+                        response.getCode(),
+                        response.getCodeRest());
+                response.setDetail(getListCollectChartDetail(paramDetail));
             }
             return listResponse;
         } catch (Exception e) {
