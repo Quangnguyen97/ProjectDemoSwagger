@@ -19,6 +19,8 @@ import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.*;
 import com.example.demoswagger.SQLServer.Commodity.*;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class CommodityController {
 
@@ -33,6 +35,7 @@ public class CommodityController {
         this.commodityServiceImpl = commodityServiceImpl;
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa bán")
     @PostMapping("/Commodity/Sell")
     public ResponseEntity<ResponseDto> getSellCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -58,6 +61,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa mua")
     @PostMapping("/Commodity/Buy")
     public ResponseEntity<ResponseDto> getBuyCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -83,6 +87,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa nhập trả")
     @PostMapping("/Commodity/Import")
     public ResponseEntity<ResponseDto> getImportCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -108,6 +113,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa xuất trả")
     @PostMapping("/Commodity/Export")
     public ResponseEntity<ResponseDto> getExportCommodity(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -133,6 +139,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa bán theo khách hàng")
     @PostMapping("/Commodity/Client/Sell")
     public ResponseEntity<ResponseDto> getSellClient(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -158,6 +165,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa nhập trả theo khách hàng")
     @PostMapping("/Commodity/Client/Import")
     public ResponseEntity<ResponseDto> getImportClient(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -184,6 +192,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa bán theo nhà cung cấp")
     @PostMapping("/Commodity/Supplier/Buy")
     public ResponseEntity<ResponseDto> getBuySupplier(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -210,6 +219,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa xuất trả theo nhà cung cấp")
     @PostMapping("/Commodity/Supplier/Export")
     public ResponseEntity<ResponseDto> getExportSupplier(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -236,6 +246,7 @@ public class CommodityController {
         }
     }
 
+    @ApiOperation(value = "Danh sách hàng hóa bán theo quầy")
     @PostMapping("/Commodity/Counter/Sell")
     public ResponseEntity<ResponseDto> getSellCounter(@RequestBody @Valid DateFromToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);

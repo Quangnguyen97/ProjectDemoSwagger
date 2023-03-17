@@ -20,6 +20,8 @@ import com.example.demoswagger.Response.*;
 import com.example.demoswagger.SQLServer.*;
 import com.example.demoswagger.SQLServer.Debt.*;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 public class DebtController {
 
@@ -34,6 +36,7 @@ public class DebtController {
         this.debtServiceImpl = debtServiceImpl;
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải THU")
     @PostMapping("/Debt/Collect")
     public ResponseEntity<ResponseDto> getCollectDebt(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -58,6 +61,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải TRẢ")
     @PostMapping("/Debt/Pay")
     public ResponseEntity<ResponseDto> getPayDebt(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -82,6 +86,8 @@ public class DebtController {
         }
     }
 
+    // Top chart
+    @ApiOperation(value = "Danh sách công nợ phải THU theo biểu đồ")
     @PostMapping("/DebtChart/Collect")
     public ResponseEntity<ResponseDto> getCollectChart(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -106,6 +112,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải THU theo biểu đồ chi tiết")
     @PostMapping("/DebtChart/Collect/Detail")
     public ResponseEntity<ResponseDto> getCollectChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -133,6 +140,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải THU bao gồm chi tiết theo biểu đồ")
     @PostMapping("/DebtChartWithDetail/Collect")
     public ResponseEntity<ResponseDto> getCollectChartWithDetail(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -158,6 +166,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải TRẢ theo biểu đồ")
     @PostMapping("/DebtChart/Pay")
     public ResponseEntity<ResponseDto> getPayChart(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -182,6 +191,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải TRẢ theo biểu đồ chi tiết")
     @PostMapping("/DebtChart/Pay/Detail")
     public ResponseEntity<ResponseDto> getPayChartDetail(@RequestBody @Valid DateFromToCodeRestDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -209,6 +219,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ phải TRẢ bao gồm chi tiết theo biểu đồ")
     @PostMapping("/DebtChartWithDetail/Pay")
     public ResponseEntity<ResponseDto> getPayChartWithDetail(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -235,6 +246,7 @@ public class DebtController {
     }
 
     // Code map
+    @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG ÂM theo mã ánh xạ")
     @PostMapping("/DebtMapClient/Negative")
     public ResponseEntity<ResponseDto> getMapClientNegative(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -260,6 +272,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG ÂM theo mã ánh xạ chi tiết")
     @PostMapping("/DebtMapClient/Negative/Detail")
     public ResponseEntity<ResponseDto> getMapClientNegativeDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -287,6 +300,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG ÂM bao gồm chi tiết theo mã ánh xạ")
     @PostMapping("/DebtMapClientWithDetail/Negative")
     public ResponseEntity<ResponseDto> getMapClientNegativeWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -313,6 +327,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG DƯƠNG theo mã ánh xạ")
     @PostMapping("/DebtMapClient/Positive")
     public ResponseEntity<ResponseDto> getMapClientPositive(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -338,6 +353,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG DƯƠNG theo mã ánh xạ chi tiết")
     @PostMapping("/DebtMapClient/Positive/Detail")
     public ResponseEntity<ResponseDto> getMapClientPositiveDetail(@RequestBody @Valid DateToTypeValueDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
@@ -365,6 +381,7 @@ public class DebtController {
         }
     }
 
+    @ApiOperation(value = "Danh sách công nợ KHÁCH HÀNG DƯƠNG bao gồm chi tiết theo mã ánh xạ")
     @PostMapping("/DebtMapClientWithDetail/Positive")
     public ResponseEntity<ResponseDto> getMapClientPositiveWithDetail(@RequestBody @Valid DateToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
