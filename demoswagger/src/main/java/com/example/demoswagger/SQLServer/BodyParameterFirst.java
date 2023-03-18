@@ -10,17 +10,17 @@ import lombok.Setter;
 public class BodyParameterFirst {
 
     @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
-    private String dateFrom;
+    private String dateFrom = null;
 
     @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
-    private String dateTo;
+    private String dateTo = null;
 
-    private String code;
-    private Integer codeRest;
-    private String codeType;
-    private String codeValue;
+    private String code = null;
+    private Integer codeRest = null;
+    private String codeType = null;
+    private String codeValue = null;
 
-    private Integer type;
+    private Integer type = null;
 
     public BodyParameterFirst() {
         super();

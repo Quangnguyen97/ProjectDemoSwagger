@@ -21,6 +21,7 @@ public class Store {
         this.order = order;
         this.description = description;
         this.value = value;
+        this.type = null;
     }
 
     public Store(int order, String description, String value, Integer type) {

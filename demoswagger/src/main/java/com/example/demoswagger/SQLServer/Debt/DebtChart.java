@@ -31,6 +31,7 @@ public class DebtChart {
         this.value = value;
         this.density = density;
         this.codeRest = codeRest;
+        this.detail = null;
     }
 
     public DebtChart(int order, String code, String name, String value, double density, int codeRest,

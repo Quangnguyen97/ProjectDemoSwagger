@@ -30,6 +30,7 @@ public class RevenueChart {
         this.value = value;
         this.density = density;
         this.codeRest = codeRest;
+        this.detail = null;
     }
 
     public RevenueChart(int order, String code, String name, String value, double density, int codeRest,

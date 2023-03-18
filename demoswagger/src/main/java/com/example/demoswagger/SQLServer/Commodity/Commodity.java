@@ -23,6 +23,7 @@ public class Commodity {
         this.description = description;
         this.quantity = quantity;
         this.amount = amount;
+        this.type = null;
     }
 
     public Commodity(int order, String description, String quantity, String amount, Integer type) {

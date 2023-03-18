@@ -29,6 +29,7 @@ public class DebtMap {
         this.name = name;
         this.value = value;
         this.codeType = codeType;
+        this.detail = null;
     }
 
     public DebtMap(int order, String code, String name, String value, String codeType, List<DebtMapDetail> detail) {
