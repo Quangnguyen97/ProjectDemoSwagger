@@ -14,13 +14,14 @@ public class DateFromToCodeRestTypeDto {
         private String dateTo;
 
         @ApiModelProperty(notes = "Mã đối tượng, VD: CODE01" + "<br>"
-                        + "Nếu codeRest = 1 thì giá trị nhập vào là tất cả mã đã hiển thị, VD: CODE01, CODE01, ...", example = "CODE01")
+                        + "Nếu codeRest = 1 thì nhập vào là tất cả mã đã hiển thị, VD: CODE01, CODE02, ...", example = "CODE01")
         private String code;
 
         @ApiModelProperty(notes = "Đánh dấu phần còn lại" + "<br>"
-                        + "Nếu = 1 thì mã đối tượng nhập vào là tất cả mã đã hiển thị", example = "0")
+                        + "Nếu = 1 thì code nhập vào là tất cả mã đã hiển thị, VD: CODE01, CODE02, ...", example = "0")
         private Integer codeRest;
 
-        @ApiModelProperty(notes = "0: danh sách âm | 1: danh sách dương", example = "0")
+        @ApiModelProperty(notes = "0 là danh sách âm " + "<br>"
+                        + "1 là danh sách dương", example = "0")
         private Integer type;
 }

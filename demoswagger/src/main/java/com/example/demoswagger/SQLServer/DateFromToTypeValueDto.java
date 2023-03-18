@@ -16,6 +16,7 @@ public class DateFromToTypeValueDto {
     @ApiModelProperty(notes = "Tên loại ánh xạ", example = "TYPE01")
     private String codeType;
 
-    @ApiModelProperty(notes = "Mã ánh xạ", example = "CODE01")
+    @ApiModelProperty(notes = "Mã ánh xạ" + "<br>"
+            + "Có thể nhiều hơn 1, VD: CODE01, CODE02, ...", example = "CODE01")
     private String codeValue;
 }
