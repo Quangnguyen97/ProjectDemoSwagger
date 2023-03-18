@@ -519,9 +519,9 @@ public class RevenueServiceImpl implements RevenueService {
                 return false;
             }
             if (ResourceValid.StrIsError(String.valueOf(type))) {
-                mCodeRest = 0;
+                mType = 0;
             } else {
-                mCodeRest = type;
+                mType = type;
             }
             return true;
         } catch (Exception e) {

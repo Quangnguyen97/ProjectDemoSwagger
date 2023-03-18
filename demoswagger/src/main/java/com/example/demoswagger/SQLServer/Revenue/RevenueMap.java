@@ -27,7 +27,6 @@ public class RevenueMap {
         this.name = name;
         this.value = value;
         this.codeType = codeType;
-        this.detail = null;
     }
 
     public RevenueMap(int order, String code, String name, String value, String codeType,
