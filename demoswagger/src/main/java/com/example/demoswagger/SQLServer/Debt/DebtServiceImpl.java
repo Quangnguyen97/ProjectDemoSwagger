@@ -258,7 +258,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "KHACHHANG"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -316,7 +316,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "KHACHHANG"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -374,7 +374,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "NHACUNGCAP"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -432,7 +432,7 @@ public class DebtServiceImpl implements DebtService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "NHACUNGCAP"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }

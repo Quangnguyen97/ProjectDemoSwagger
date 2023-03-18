@@ -424,8 +424,8 @@ public class RevenueController {
     public ResponseEntity<ResponseDto> getMapCommodityPositive(@RequestBody @Valid DateFromToTypeDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            List<RevenueMap> listResponse = serviceImpl
-                    .getListMapCommodityPositive(modelMapper.map(param, new BodyParameterFirst(
+            List<RevenueMap> listResponse = serviceImpl.getListMapCommodityPositive(modelMapper.map(param,
+                    new BodyParameterFirst(
                             param.getDateFrom(),
                             param.getDateTo(),
                             param.getCodeType()).getClass()));

@@ -193,7 +193,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "KHACHHANG"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -253,7 +253,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "KHACHHANG"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -313,7 +313,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "HANGHOADAURA"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
@@ -373,7 +373,7 @@ public class RevenueServiceImpl implements RevenueService {
                     resource.getString("CodeValue"),
                     resource.getString("ThongTinNhom"),
                     ResourceValid.FormatDouble(resource.getDouble("SoTien")),
-                    "HANGHOADAURA"));
+                    param.getCodeType()));
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
