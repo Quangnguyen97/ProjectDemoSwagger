@@ -7,6 +7,8 @@ import com.example.demoswagger.SQLServer.*;
 public interface StoreService {
 
     // Retail
+    List<StoreRetail> getListStoreRetail();
+
     List<Store> getListRetailImport(BodyParameterSecond param);
 
     List<Store> getListRetailInventory(BodyParameterSecond param);

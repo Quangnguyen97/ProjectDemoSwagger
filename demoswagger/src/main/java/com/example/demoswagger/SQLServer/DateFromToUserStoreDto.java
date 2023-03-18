@@ -13,7 +13,7 @@ public class DateFromToUserStoreDto {
     @ApiModelProperty(notes = "Đến ngày", example = "2022/01/01")
     private String dateTo;
 
-    @ApiModelProperty(notes = "Người dùng", example = "user")
+    @ApiModelProperty(notes = "Người dùng", example = "admin")
     private String user;
 
     @ApiModelProperty(notes = "Mã kho", example = "CODE01")

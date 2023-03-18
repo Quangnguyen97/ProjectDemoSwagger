@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.example.demoswagger.Module.*;
 import com.example.demoswagger.SQLServer.*;
@@ -18,6 +20,21 @@ public class StoreServiceImpl implements StoreService {
     private JdbcTemplate jdbcTemplate;
 
     // Retail
+    @Override
+    public List<StoreRetail> getListStoreRetail() {
+        try {
+            String sql = "SELECT ROW_NUMBER() OVER(ORDER BY MaKho) as SapXep, MaKho, TenKho, TenDayDu, DiaChi FROM lsttbl_KhoHang ";
+            return jdbcTemplate.query(sql, (resource, rowNum) -> new StoreRetail(
+                    resource.getInt("SapXep"),
+                    resource.getString("MaKho"),
+                    resource.getString("TenKho"),
+                    resource.getString("TenDayDu"),
+                    resource.getString("DiaChi")));
+        } catch (Exception e) {
+            throw new ResourceException(e.getMessage());
+        }
+    }
+
     @Override
     public List<Store> getListRetailImport(BodyParameterSecond param) {
         try {
@@ -155,7 +172,12 @@ public class StoreServiceImpl implements StoreService {
                 return false;
             }
             if (ResourceValid.StrIsError(user)) {
-                mUser = "NULL";
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                if (auth == null) {
+                    mUser = "NULL";
+                } else {
+                    mUser = "'" + auth.getPrincipal() + "'";
+                }
             } else {
                 mUser = "'" + user + "'";
             }

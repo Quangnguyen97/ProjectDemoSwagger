@@ -39,6 +39,29 @@ public class StoreController {
     }
 
     // Retail
+    @ApiOperation(value = "Danh sách KHO LẺ")
+    @PostMapping("/Store/Retail")
+    public ResponseEntity<ResponseDto> getListStoreRetail() {
+        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        try {
+            List<StoreRetail> listResponse = serviceImpl.getListStoreRetail();
+            if (listResponse.isEmpty()) {
+                throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
+            }
+            List<Object> listObject = new ArrayList<Object>();
+            for (StoreRetail response : listResponse) {
+                listObject.add(response);
+            }
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+                    HttpStatus.OK.getReasonPhrase(), "", listObject);
+            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+        } catch (Exception e) {
+            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+        }
+    }
+
     @ApiOperation(value = "Danh sách hàng hóa NHẬP kho lẻ")
     @PostMapping("/Store/Retail/Import")
     public ResponseEntity<ResponseDto> getRetailImport(@RequestBody @Valid DateFromToUserStoreDto param) {
