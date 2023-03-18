@@ -19,6 +19,6 @@ public class DateFromToCodeRestTypeDto {
     @ApiModelProperty(notes = "Đánh dấu phần còn lại", example = "0")
     private Integer codeRest;
 
-    @ApiModelProperty(notes = "0: Loại âm, 1: Loại dương", example = "0")
+    @ApiModelProperty(notes = "0: danh sách âm | 1: danh sách dương", example = "0")
     private Integer type;
 }
