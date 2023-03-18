@@ -55,6 +55,7 @@ public class RevenueServiceImpl implements RevenueService {
                 for (RevenueChart response : listResponse) {
                     if (response.getCodeRest() == 1) {
                         response.setCode(mCode);
+                        response.setName("Các mã còn lại không thuộc danh sách trên");
                     }
                     listReturn.add(response);
                 }
@@ -100,6 +101,7 @@ public class RevenueServiceImpl implements RevenueService {
                 for (RevenueChart response : listResponse) {
                     if (response.getCodeRest() == 1) {
                         response.setCode(mCode);
+                        response.setName("Các mã còn lại không thuộc danh sách trên");
                     }
                     listReturn.add(response);
                 }

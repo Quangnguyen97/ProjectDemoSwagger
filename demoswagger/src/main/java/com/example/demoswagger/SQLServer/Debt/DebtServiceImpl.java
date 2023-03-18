@@ -95,6 +95,7 @@ public class DebtServiceImpl implements DebtService {
                 for (DebtChart response : listResponse) {
                     if (response.getCodeRest() == 1) {
                         response.setCode(mCode);
+                        response.setName("Các mã còn lại không thuộc danh sách trên");
                     }
                     listReturn.add(response);
                 }
@@ -184,6 +185,7 @@ public class DebtServiceImpl implements DebtService {
                 for (DebtChart response : listResponse) {
                     if (response.getCodeRest() == 1) {
                         response.setCode(mCode);
+                        response.setName("Các mã còn lại không thuộc danh sách trên");
                     }
                     listReturn.add(response);
                 }
