@@ -2,8 +2,7 @@ package com.example.demoswagger.SQLServer.Debt;
 
 import java.util.List;
 
-import com.example.demoswagger.SQLServer.BodyParameterSecond;
-import com.example.demoswagger.SQLServer.BodyParameterFirst;
+import com.example.demoswagger.SQLServer.*;
 
 public interface DebtService {
 

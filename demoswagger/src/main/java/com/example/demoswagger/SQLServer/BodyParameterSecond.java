@@ -42,11 +42,11 @@ public class BodyParameterSecond {
         this.codeValue = codeValue;
     }
 
-    public BodyParameterSecond(String user, String store, String dateFrom, String dateTo) {
+    public BodyParameterSecond(String dateFrom, String dateTo, String user, String store) {
         super();
-        this.user = user;
-        this.store = store;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
+        this.user = user;
+        this.store = store;
     }
 }
