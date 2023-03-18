@@ -150,7 +150,7 @@ public class StoreController {
     }
 
     @ApiOperation(value = "Danh sách hàng hóa TỒN theo kho")
-    @PostMapping("/Store/WithStock")
+    @PostMapping("/Store/Inventory/WithStock")
     public ResponseEntity<ResponseDto> getInventoryWithStock(@RequestBody @Valid DateToDto param) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
