@@ -38,9 +38,10 @@ public class CodeMapServiceImpl implements CodeMapService {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "CodeType"));
             }
-            String sql = "sp_GETTBL_ForAndroid_CodeMappingList " + mCodeType + "";
+            String sql = "sp_GETTBL_ForAndroid_CodeMappingList_Detail " + mCodeType + "";
             return jdbcTemplate.query(sql, (resource, rowNum) -> new CodeMapDetail(
                     resource.getInt("CodeOrder"),
+                    resource.getString("CodeType"),
                     resource.getString("CodeValue"),
                     resource.getString("CodeDescription"),
                     resource.getInt("CodeRest"),

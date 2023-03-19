@@ -8,6 +8,7 @@ import lombok.Setter;
 public class CodeMapDetail {
 
     private int order;
+    private String codeType;
     private String codeValue;
     private String CodeDescription;
     private Integer CodeRest;
@@ -17,9 +18,11 @@ public class CodeMapDetail {
         super();
     }
 
-    public CodeMapDetail(int order, String codeValue, String CodeDescription, Integer CodeRest, String countDetail) {
+    public CodeMapDetail(int order, String codeType, String codeValue, String CodeDescription, Integer CodeRest,
+            String countDetail) {
         super();
         this.order = order;
+        this.codeType = codeType;
         this.codeValue = codeValue;
         this.CodeDescription = CodeDescription;
         this.CodeRest = CodeRest;
