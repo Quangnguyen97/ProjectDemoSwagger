@@ -24,9 +24,9 @@ public class BodyParameterSecond {
         super();
     }
 
-    public BodyParameterSecond(String user) {
+    public BodyParameterSecond(String codeType) {
         super();
-        this.user = user;
+        this.codeType = codeType;
     }
 
     public BodyParameterSecond(String dateTo, String codeType) {

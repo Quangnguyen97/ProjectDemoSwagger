@@ -2,7 +2,7 @@ package com.example.demoswagger.SQLServer.Cash;
 
 import java.util.List;
 
-import com.example.demoswagger.SQLServer.BodyParameterFirst;
+import com.example.demoswagger.SQLServer.*;
 
 public interface CashService {
 

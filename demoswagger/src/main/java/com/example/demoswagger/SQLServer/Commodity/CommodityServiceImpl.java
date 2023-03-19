@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.example.demoswagger.Module.*;
-import com.example.demoswagger.SQLServer.BodyParameterFirst;
+import com.example.demoswagger.SQLServer.*;
 
 @Service
 public class CommodityServiceImpl implements CommodityService {
