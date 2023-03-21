@@ -13,10 +13,10 @@ import com.example.demoswagger.Module.*;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private final AccountRepository accountRepository;
 
     public AccountServiceImpl(UserRepository userRepository, AccountRepository accountRepository) {
         super();
@@ -33,8 +33,8 @@ public class AccountServiceImpl implements AccountService {
             }
 
             // Check data exists
-            if (userRepository.findById(UserId).isEmpty() == true
-                    || accountRepository.findByUserId(UserId).isEmpty() == true) {
+            if (userRepository.findById(UserId).isEmpty()
+                    || accountRepository.findByUserId(UserId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
             }
 
@@ -55,10 +55,10 @@ public class AccountServiceImpl implements AccountService {
             }
 
             // Check data exists
-            if (userRepository.findById(UserId).isEmpty() == true
-                    || accountRepository.findByUserId(UserId).isEmpty() == true) {
+            if (userRepository.findById(UserId).isEmpty()
+                    || accountRepository.findByUserId(UserId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
-            } else if (accountRepository.findById(AccountNumber).isEmpty() == true) {
+            } else if (accountRepository.findById(AccountNumber).isEmpty()) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "accountNumber"));
             } else if (accountRepository.findByUserIdAndAccountNumber(UserId, AccountNumber) == null) {
@@ -95,9 +95,9 @@ public class AccountServiceImpl implements AccountService {
             // Check data exists
             if (UserId != account.getUserId()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.DIFFERENT, "userId"));
-            } else if (userRepository.findById(UserId).isEmpty() == true) {
+            } else if (userRepository.findById(UserId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
-            } else if (accountRepository.findById(account.getAccountNumber()).isEmpty() == false) {
+            } else if (accountRepository.findById(account.getAccountNumber()).isPresent()) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.EXISTED, "accountNumber"));
             } else if (accountRepository.findByUserIdAndAccountNumber(UserId, account.getAccountNumber()) != null) {
@@ -135,12 +135,12 @@ public class AccountServiceImpl implements AccountService {
             // Check data exists
             if (UserId != account.getUserId()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.DIFFERENT, "userId"));
-            } else if (userRepository.findById(UserId).isEmpty() == true) {
+            } else if (userRepository.findById(UserId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
             } else if (AccountNumber != account.getAccountNumber()) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.DIFFERENT, "accountNumber"));
-            } else if (accountRepository.findById(AccountNumber).isEmpty() == true) {
+            } else if (accountRepository.findById(AccountNumber).isEmpty()) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "accountNumber"));
             } else if (accountRepository.findByUserIdAndAccountNumber(UserId, AccountNumber) == null) {
@@ -171,9 +171,9 @@ public class AccountServiceImpl implements AccountService {
             }
 
             // Check data exists
-            if (userRepository.findById(UserId).isEmpty() == true) {
+            if (userRepository.findById(UserId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
-            } else if (accountRepository.findById(AccountNumber).isEmpty() == true) {
+            } else if (accountRepository.findById(AccountNumber).isEmpty()) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "accountNumber"));
             } else if (accountRepository.findByUserIdAndAccountNumber(UserId, AccountNumber) == null) {
