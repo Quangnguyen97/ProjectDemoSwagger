@@ -1,13 +1,15 @@
 package com.example.demoswagger;
 
+import com.example.demoswagger.account.Account;
+import com.example.demoswagger.account.AccountServiceImpl;
+import com.example.demoswagger.module.ResourceException;
+import com.example.demoswagger.user.User;
+import com.example.demoswagger.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import javax.transaction.Transactional;
 
-import com.example.demoswagger.User.*;
-import com.example.demoswagger.Account.*;
-import com.example.demoswagger.Module.*;
+import javax.transaction.Transactional;
 
 @Component
 public class DataLineRunner implements CommandLineRunner {

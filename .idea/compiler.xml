@@ -12,7 +12,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="demoswagger" target="19" />
       <module name="ProjectDemoSwagger" target="1.5" />
     </bytecodeTargetLevel>
   </component>
