@@ -1,6 +1,5 @@
 package com.example.demoswagger.basicauthen;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -16,8 +15,11 @@ import java.util.List;
 @Component
 public class MyBasicAuthenticationProvider implements AuthenticationProvider {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+
+    public MyBasicAuthenticationProvider(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {

@@ -3,7 +3,6 @@ package com.example.demoswagger.account;
 import com.example.demoswagger.module.ResourceException;
 import com.example.demoswagger.module.ResourceValid;
 import com.example.demoswagger.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,10 +11,8 @@ import java.util.List;
 @Service
 public class AccountServiceImpl implements AccountService {
 
-    @Autowired
     private final UserRepository userRepository;
 
-    @Autowired
     private final AccountRepository accountRepository;
 
     public AccountServiceImpl(UserRepository userRepository, AccountRepository accountRepository) {
@@ -25,48 +22,48 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> getByUserId(long UserId) {
+    public List<Account> getByUserId(long userId) {
         try {
             // Check error field
-            if (ResourceValid.ObjectIsError(ResourceValid.typeOBJECT.LONG, UserId) || UserId < 1) {
+            if (ResourceValid.ObjectIsError(ResourceValid.typeOBJECT.LONG, userId) || userId < 1) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "userId"));
             }
 
             // Check data exists
-            if (userRepository.findById(UserId).isEmpty()
-                    || accountRepository.findByUserId(UserId).isEmpty()) {
+            if (userRepository.findById(userId).isEmpty()
+                    || accountRepository.findByUserId(userId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
             }
 
-            return accountRepository.findByUserId(UserId);
+            return accountRepository.findByUserId(userId);
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());
         }
     }
 
     @Override
-    public Account getByUserIdAndAccountNumber(long UserId, long AccountNumber) {
+    public Account getByUserIdAndAccountNumber(long userId, long AccountNumber) {
         try {
             // Check error field
-            if (ResourceValid.ObjectIsError(ResourceValid.typeOBJECT.LONG, UserId) || UserId < 1) {
+            if (ResourceValid.ObjectIsError(ResourceValid.typeOBJECT.LONG, userId) || userId < 1) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "userId"));
             } else if (ResourceValid.ObjectIsError(ResourceValid.typeOBJECT.LONG, AccountNumber) || AccountNumber < 1) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.FIELD, "accountNumber"));
             }
 
             // Check data exists
-            if (userRepository.findById(UserId).isEmpty()
-                    || accountRepository.findByUserId(UserId).isEmpty()) {
+            if (userRepository.findById(userId).isEmpty()
+                    || accountRepository.findByUserId(userId).isEmpty()) {
                 throw new ResourceException(ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId"));
             } else if (accountRepository.findById(AccountNumber).isEmpty()) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "accountNumber"));
-            } else if (accountRepository.findByUserIdAndAccountNumber(UserId, AccountNumber) == null) {
+            } else if (accountRepository.findByUserIdAndAccountNumber(userId, AccountNumber) == null) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.NOTEXISTED, "userId, accountNumber"));
             }
 
-            return accountRepository.findByUserIdAndAccountNumber(UserId, AccountNumber);
+            return accountRepository.findByUserIdAndAccountNumber(userId, AccountNumber);
         } catch (
 
                 Exception e) {

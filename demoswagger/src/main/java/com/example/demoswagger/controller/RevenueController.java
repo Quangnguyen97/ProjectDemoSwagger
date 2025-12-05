@@ -4,8 +4,16 @@ import com.example.demoswagger.module.ResourceException;
 import com.example.demoswagger.module.ResourceResponse;
 import com.example.demoswagger.response.Response;
 import com.example.demoswagger.response.ResponseDto;
-import com.example.demoswagger.sqlserver.*;
-import com.example.demoswagger.sqlserver.revenue.*;
+import com.example.demoswagger.sqlserver.BodyParameterFirst;
+import com.example.demoswagger.sqlserver.DateFromToCodeRestTypeDto;
+import com.example.demoswagger.sqlserver.DateFromToDto;
+import com.example.demoswagger.sqlserver.DateFromToTypeDto;
+import com.example.demoswagger.sqlserver.DateFromToTypeValueDto;
+import com.example.demoswagger.sqlserver.revenue.RevenueChart;
+import com.example.demoswagger.sqlserver.revenue.RevenueChartDetail;
+import com.example.demoswagger.sqlserver.revenue.RevenueMap;
+import com.example.demoswagger.sqlserver.revenue.RevenueMapDetail;
+import com.example.demoswagger.sqlserver.revenue.RevenueServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.modelmapper.ModelMapper;
@@ -54,11 +62,11 @@ public class RevenueController {
             for (RevenueChart response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -80,11 +88,11 @@ public class RevenueController {
             for (RevenueChart response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -109,11 +117,11 @@ public class RevenueController {
             for (RevenueChartDetail response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -135,11 +143,11 @@ public class RevenueController {
             for (RevenueChart response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -161,11 +169,11 @@ public class RevenueController {
             for (RevenueChart response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -189,11 +197,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -217,11 +225,11 @@ public class RevenueController {
             for (RevenueMapDetail response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -244,11 +252,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -271,11 +279,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -299,11 +307,11 @@ public class RevenueController {
             for (RevenueMapDetail response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -326,11 +334,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -353,11 +361,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -381,11 +389,11 @@ public class RevenueController {
             for (RevenueMapDetail response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -408,11 +416,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -435,11 +443,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -463,11 +471,11 @@ public class RevenueController {
             for (RevenueMapDetail response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -490,11 +498,11 @@ public class RevenueController {
             for (RevenueMap response : listResponse) {
                 listObject.add(response);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -505,11 +513,11 @@ public class RevenueController {
             HttpMessageNotReadableException exception) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
                     HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }

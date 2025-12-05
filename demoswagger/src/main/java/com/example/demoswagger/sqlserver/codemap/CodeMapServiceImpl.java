@@ -68,7 +68,7 @@ public class CodeMapServiceImpl implements CodeMapService {
 
     private boolean CheckCodeType(String codeType) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
                 return false;
             }
             if (ResourceValid.StrIsError(codeType)) {

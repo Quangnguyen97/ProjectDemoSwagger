@@ -1,5 +1,6 @@
 package com.example.demoswagger.sqlserver.debt;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,6 +8,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class DebtMap {
 
     private int order;
@@ -30,15 +32,5 @@ public class DebtMap {
         this.value = value;
         this.codeType = codeType;
         this.detail = null;
-    }
-
-    public DebtMap(int order, String code, String name, String value, String codeType, List<DebtMapDetail> detail) {
-        super();
-        this.order = order;
-        this.code = code;
-        this.name = name;
-        this.value = value;
-        this.codeType = codeType;
-        this.detail = detail;
     }
 }

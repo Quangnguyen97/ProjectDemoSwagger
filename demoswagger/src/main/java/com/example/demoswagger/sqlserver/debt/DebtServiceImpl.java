@@ -16,7 +16,11 @@ import java.util.NoSuchElementException;
 @Service
 public class DebtServiceImpl implements DebtService {
 
-    private String mDateFrom, mDateTo, mCode, mCodeValue, mCodeType;
+    private String mDateFrom;
+    private String mDateTo;
+    private String mCode;
+    private String mCodeValue;
+    private String mCodeType;
     private Integer mCodeRest;
 
     @Autowired
@@ -114,7 +118,7 @@ public class DebtServiceImpl implements DebtService {
         try {
             // Check error field
             if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
-                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())) {
+                    || !CheckCode(param.getCode()) || !checkCodeRest(param.getCodeRest())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
@@ -204,7 +208,7 @@ public class DebtServiceImpl implements DebtService {
         try {
             // Check error field
             if (!CheckDateFrom(param.getDateFrom()) || !CheckDateTo(param.getDateTo())
-                    || !CheckCode(param.getCode()) || !CheckCodeRest(param.getCodeRest())) {
+                    || !CheckCode(param.getCode()) || !checkCodeRest(param.getCodeRest())) {
                 throw new ResourceException(
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
@@ -275,7 +279,7 @@ public class DebtServiceImpl implements DebtService {
                         ResourceValid.StringError(ResourceValid.typeERROR.FIELD, ""));
             }
             String sql = "EXEC sp_GETTBL_ForAndroid_ByCodeMap_CongNo_KhachHang_Am_CT "
-                    + mDateTo + ", " + mCodeType + ", " + mCodeValue + "";
+                    + mDateTo + ", " + mCodeType + ", " + mCodeValue;
             return jdbcTemplate.query(sql, (resource, rowNum) -> new DebtMapDetail(
                     resource.getInt("SapXep"),
                     resource.getString("ThongTinDoiTuong"),
@@ -478,7 +482,7 @@ public class DebtServiceImpl implements DebtService {
 
     private boolean CheckDateFrom(String dateFrom) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
                 return false;
             }
             if (ResourceValid.StrIsError(dateFrom)) {
@@ -494,7 +498,7 @@ public class DebtServiceImpl implements DebtService {
 
     private boolean CheckDateTo(String dateTo) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
                 return false;
             }
             if (ResourceValid.StrIsError(dateTo)) {
@@ -510,7 +514,7 @@ public class DebtServiceImpl implements DebtService {
 
     private boolean CheckCode(String code) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, code)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, code)) {
                 return false;
             }
             if (ResourceValid.StrIsError(code)) {
@@ -526,7 +530,7 @@ public class DebtServiceImpl implements DebtService {
 
     private boolean CheckCodeValue(String codeValue) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeValue)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, codeValue)) {
                 return false;
             }
             if (ResourceValid.StrIsError(codeValue)) {
@@ -542,7 +546,7 @@ public class DebtServiceImpl implements DebtService {
 
     private boolean CheckCodeType(String codeType) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
                 return false;
             }
             if (ResourceValid.StrIsError(codeType)) {
@@ -556,9 +560,9 @@ public class DebtServiceImpl implements DebtService {
         }
     }
 
-    private boolean CheckCodeRest(int codeRest) {
+    private boolean checkCodeRest(int codeRest) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.INTEGER, codeRest)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.INTEGER, codeRest)) {
                 return false;
             }
             if (ResourceValid.StrIsError(String.valueOf(codeRest))) {

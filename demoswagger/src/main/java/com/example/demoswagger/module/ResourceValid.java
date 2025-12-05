@@ -11,25 +11,25 @@ public class ResourceValid {
         STRING, DATE, LONG, INTEGER, FLOAT, DOUBLE, BOOLEAN
     }
 
-    public static boolean TypeIsError(typeOBJECT typeObject, Object Value) {
+    public static boolean typeIsError(typeOBJECT typeObject, Object value) {
         try {
             switch (typeObject) {
                 case STRING:
-                    return Value.getClass().getSimpleName() != String.class.getSimpleName();
+                    return value.getClass().getSimpleName() != String.class.getSimpleName();
                 case DATE:
-                    return Value.getClass().getSimpleName() != Date.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Date.class.getSimpleName();
                 case LONG:
-                    return Value.getClass().getSimpleName() != Long.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Long.class.getSimpleName();
                 case INTEGER:
-                    return Value.getClass().getSimpleName() != Integer.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Integer.class.getSimpleName();
                 case FLOAT:
-                    return Value.getClass().getSimpleName() != Float.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Float.class.getSimpleName();
                 case DOUBLE:
-                    return Value.getClass().getSimpleName() != Double.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Double.class.getSimpleName();
                 case BOOLEAN:
-                    return Value.getClass().getSimpleName() != Boolean.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Boolean.class.getSimpleName();
                 default:
-                    return Value.getClass().getSimpleName() != Object.class.getSimpleName();
+                    return value.getClass().getSimpleName() != Object.class.getSimpleName();
             }
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());

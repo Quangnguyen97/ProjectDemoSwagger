@@ -46,11 +46,11 @@ public class NotificationController {
             for (String Token : listToken) {
                 listObject.add(Token);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -68,11 +68,11 @@ public class NotificationController {
             for (Notification notification : listNotification) {
                 listObject.add(notification);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -83,11 +83,11 @@ public class NotificationController {
             HttpMessageNotReadableException exception) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
                     HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }

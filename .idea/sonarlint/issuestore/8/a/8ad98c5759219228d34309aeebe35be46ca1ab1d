@@ -1,0 +1,99 @@
+
+o
+java:S22936"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+o
+java:S2293P"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+o
+java:S2293m"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293‡"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293¡"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293½"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293Ù"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293ô"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293«"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293Æ"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293á"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293ı"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293˜"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293³"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293Ï"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+p
+java:S2293ê"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ééš¿
+]
+java:S11924"GDefine a constant instead of duplicating this literal "List " 17 times.(Æ‰¶
+f	java:S117-"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+f	java:S117G"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+f	java:S117a"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+f	java:S117~"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117˜"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117³"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117Î"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117ê"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117…"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117 "QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117¼"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117×"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117ò"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117©"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117Ä"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117à"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+g	java:S117û"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûİë·
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(æÍü¿ÿÿÿÿÿ
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
+X
+java:S6813!"BRemove this field injection and use constructor injection instead.(êæÄŞ
+N
+java:S6863ÿ"2Set a HttpStatus code reflective of the operation.(”í“Šøÿÿÿÿ
+N
+java:S1874"3Remove this use of "description"; it is deprecated.(ú±è ùÿÿÿÿ
+g
+java:S21330"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(½»£øÿÿÿÿ
+b
+java:S2133J"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(ÊñÑÙ
+g
+java:S2133d"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(üïÔØûÿÿÿÿ
+h
+java:S2133"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(è™”›øÿÿÿÿ
+c
+java:S2133›"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(„¼¹
+c
+java:S2133¶"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(•Å«²
+h
+java:S2133Ñ"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(€®Çÿûÿÿÿÿ
+h
+java:S2133í"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(µİáıÿÿÿÿ
+c
+java:S2133ˆ"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(Ä¿Ì™
+c
+java:S2133£"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(íäŒİ
+c
+java:S2133¿"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(Âµ«…
+h
+java:S2133Ú"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(á©‰³üÿÿÿÿ
+h
+java:S2133õ"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(Á‰û ûÿÿÿÿ
+c
+java:S2133‘"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(ÄĞŒ
+h
+java:S2133¬"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(ÆëÜÜûÿÿÿÿ
+h
+java:S2133Ç"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(†Æà§ùÿÿÿÿ
+h
+java:S2133ã"LRemove this object instantiation and use "BodyParameterFirst.class" instead.(„¡şÿÿÿÿ
+d	java:S100ù"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ß«÷€

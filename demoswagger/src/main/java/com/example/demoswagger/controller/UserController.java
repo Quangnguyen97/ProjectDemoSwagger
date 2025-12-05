@@ -13,7 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -50,11 +57,11 @@ public class UserController {
             for (User user : listUser) {
                 listObject.add(user);
             }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -70,11 +77,11 @@ public class UserController {
             }
             List<Object> listObject = new ArrayList<Object>();
             listObject.add(user);
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -90,11 +97,11 @@ public class UserController {
             }
             List<Object> listObject = new ArrayList<Object>();
             listObject.add(user);
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.CREATED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.CREATED.value(),
                     HttpStatus.CREATED.getReasonPhrase(), "User created successfully", listObject);
             return ResponseEntity.status(HttpStatus.CREATED).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -111,11 +118,11 @@ public class UserController {
             }
             List<Object> listObject = new ArrayList<Object>();
             listObject.add(user);
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.ACCEPTED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.ACCEPTED.value(),
                     HttpStatus.ACCEPTED.getReasonPhrase(), "User updated successfully", listObject);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -126,14 +133,14 @@ public class UserController {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             if (serviceImpl.deleteUser(userId)) {
-                ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.ACCEPTED.value(),
+                ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.ACCEPTED.value(),
                         HttpStatus.ACCEPTED.getReasonPhrase(), "User deleted successfully", null);
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(ResponseDto);
             } else {
                 throw new ResourceException("User deleted failed");
             }
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }
@@ -144,11 +151,11 @@ public class UserController {
             HttpMessageNotReadableException exception) {
         ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
                     HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
         }

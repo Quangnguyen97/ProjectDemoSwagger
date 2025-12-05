@@ -10,22 +10,22 @@ public class CodeMapDetail {
     private int order;
     private String codeType;
     private String codeValue;
-    private String CodeDescription;
-    private Integer CodeRest;
+    private String codeDescription;
+    private Integer codeRest;
     private String countDetail;
 
     public CodeMapDetail() {
         super();
     }
 
-    public CodeMapDetail(int order, String codeType, String codeValue, String CodeDescription, Integer CodeRest,
+    public CodeMapDetail(int order, String codeType, String codeValue, String codeDescription, Integer codeRest,
                          String countDetail) {
         super();
         this.order = order;
         this.codeType = codeType;
         this.codeValue = codeValue;
-        this.CodeDescription = CodeDescription;
-        this.CodeRest = CodeRest;
+        this.codeDescription = codeDescription;
+        this.codeRest = codeRest;
         this.countDetail = countDetail;
     }
 }

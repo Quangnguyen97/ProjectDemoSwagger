@@ -451,7 +451,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckCode(String code) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, code)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, code)) {
                 return false;
             }
             if (ResourceValid.StrIsError(code)) {
@@ -467,7 +467,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckCodeValue(String codeValue) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeValue)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, codeValue)) {
                 return false;
             }
             if (ResourceValid.StrIsError(codeValue)) {
@@ -483,7 +483,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckCodeType(String codeType) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, codeType)) {
                 return false;
             }
             if (ResourceValid.StrIsError(codeType)) {
@@ -499,7 +499,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckCodeRest(int codeRest) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.INTEGER, codeRest)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.INTEGER, codeRest)) {
                 return false;
             }
             if (ResourceValid.StrIsError(String.valueOf(codeRest))) {
@@ -515,7 +515,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckType(int type) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.INTEGER, type)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.INTEGER, type)) {
                 return false;
             }
             if (ResourceValid.StrIsError(String.valueOf(type))) {

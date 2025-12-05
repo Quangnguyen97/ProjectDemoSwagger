@@ -1,17 +1,19 @@
 package com.example.demoswagger.sqlserver;
 
 import com.example.demoswagger.module.ResourceDateTimeValid;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class BodyParameterFirst {
 
-    @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
+    @ResourceDateTimeValid(message = "Invalid convert datetime to string!")
     private String dateFrom = null;
 
-    @ResourceDateTimeValid(fomart = "yyyy/dd/MM", message = "Invalid convert datetime to string!")
+    @ResourceDateTimeValid(message = "Invalid convert datetime to string!")
     private String dateTo = null;
 
     private String code = null;

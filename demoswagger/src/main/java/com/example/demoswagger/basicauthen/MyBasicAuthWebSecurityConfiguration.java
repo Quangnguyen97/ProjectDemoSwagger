@@ -17,21 +17,29 @@ import org.springframework.security.web.SecurityFilterChain;
 @ComponentScan("com.example.demoswagger.BasicAuthen")
 public class MyBasicAuthWebSecurityConfiguration {
 
-    @Autowired
-    private MyBasicAuthenticationProvider authenticationProvider;
+    private final MyBasicAuthenticationProvider authenticationProvider;
 
-    @Autowired
-    private MyBasicAuthenticationEntryPoint authenticationEntryPoint;
+    private final MyBasicAuthenticationEntryPoint authenticationEntryPoint;
+
+    public MyBasicAuthWebSecurityConfiguration(
+            MyBasicAuthenticationProvider authenticationProvider,
+            MyBasicAuthenticationEntryPoint authenticationEntryPoint
+    ) {
+        this.authenticationProvider = authenticationProvider;
+        this.authenticationEntryPoint = authenticationEntryPoint;
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder authentication) throws Exception {
         try {
             PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
             authentication.authenticationProvider(authenticationProvider);
+            @SuppressWarnings("all")
+            String password = encoder.encode("1408199720061996");
             authentication
                     .inMemoryAuthentication()
                     .withUser("administrator")
-                    .password(encoder.encode("1408199720061996"))
+                    .password(password)
                     .authorities("ROLE_ADMIN");
         } catch (Exception e) {
             throw new ResourceException(e.getMessage());

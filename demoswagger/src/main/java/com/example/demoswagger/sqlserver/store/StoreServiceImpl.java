@@ -137,7 +137,7 @@ public class StoreServiceImpl implements StoreService {
 
     private boolean CheckDateFrom(String dateFrom) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
                 return false;
             }
             if (ResourceValid.StrIsError(dateFrom)) {
@@ -153,7 +153,7 @@ public class StoreServiceImpl implements StoreService {
 
     private boolean CheckDateTo(String dateTo) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
                 return false;
             }
             if (ResourceValid.StrIsError(dateTo)) {
@@ -169,7 +169,7 @@ public class StoreServiceImpl implements StoreService {
 
     private boolean CheckUser(String user) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, user)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, user)) {
                 return false;
             }
             if (ResourceValid.StrIsError(user)) {
@@ -190,7 +190,7 @@ public class StoreServiceImpl implements StoreService {
 
     private boolean CheckStore(String store) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, store)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, store)) {
                 return false;
             }
             if (ResourceValid.StrIsError(store)) {

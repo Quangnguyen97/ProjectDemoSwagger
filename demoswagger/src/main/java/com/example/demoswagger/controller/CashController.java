@@ -9,14 +9,11 @@ import com.example.demoswagger.sqlserver.DateFromToDto;
 import com.example.demoswagger.sqlserver.cash.CashBook;
 import com.example.demoswagger.sqlserver.cash.CashReceiptPayment;
 import com.example.demoswagger.sqlserver.cash.CashServiceImpl;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,110 +23,76 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@Api(tags = "Thu chi", description = "Thu chi API")
-public class CashController {
+@Tag(name = "Thu chi", description = "Thu chi API")
+public class CashController extends BaseController {
 
-    @Autowired
-    private ModelMapper modelMapper;
+    private final CashServiceImpl serviceImpl;
 
-    @Autowired
-    private CashServiceImpl serviceImpl;
-
-    public CashController(CashServiceImpl serviceImpl) {
-        super();
+    public CashController(ModelMapper modelMapper, CashServiceImpl serviceImpl) {
+        super(modelMapper);
         this.serviceImpl = serviceImpl;
     }
 
-    @ApiOperation(value = "Danh sách SỔ QUỸ tiền mặt")
+    @Operation(summary = "Danh sách SỔ QUỸ tiền mặt")
     @PostMapping("/Cash/Book")
     public ResponseEntity<ResponseDto> getCashBook(@RequestBody @Valid DateFromToDto param) {
-        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        ResponseDto responseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<CashBook> listResponse = serviceImpl
-                    .getListCashBook(modelMapper.map(param, new BodyParameterFirst(
-                            param.getDateFrom(),
-                            param.getDateTo()).getClass()));
+                    .getListCashBook(modelMapper.map(param, BodyParameterFirst.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-            List<Object> listObject = new ArrayList<Object>();
-            for (CashBook response : listResponse) {
-                listObject.add(response);
-            }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            List<Object> listObject = new ArrayList<>(listResponse);
+            ResourceResponse.responseDto(responseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+            return ResponseEntity.status(HttpStatus.OK).body(responseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResourceResponse.responseDto(responseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(responseDto);
         }
     }
 
-    @ApiOperation(value = "Danh sách THU tiền mặt")
+    @Operation(summary = "Danh sách THU tiền mặt")
     @PostMapping("/Cash/Receipt")
     public ResponseEntity<ResponseDto> getCashReceipt(@RequestBody @Valid DateFromToDto param) {
-        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        ResponseDto responseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<CashReceiptPayment> listResponse = serviceImpl
-                    .getListCashReceipt(modelMapper.map(param, new BodyParameterFirst(
-                            param.getDateFrom(),
-                            param.getDateTo()).getClass()));
+                    .getListCashReceipt(modelMapper.map(param, BodyParameterFirst.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-            List<Object> listObject = new ArrayList<Object>();
-            for (CashReceiptPayment response : listResponse) {
-                listObject.add(response);
-            }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            List<Object> listObject = new ArrayList<>(listResponse);
+            ResourceResponse.responseDto(responseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+            return ResponseEntity.status(HttpStatus.OK).body(responseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResourceResponse.responseDto(responseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(responseDto);
         }
     }
 
-    @ApiOperation(value = "Danh sách CHI tiền mặt")
+    @Operation(summary = "Danh sách CHI tiền mặt")
     @PostMapping("/Cash/Payment")
     public ResponseEntity<ResponseDto> getCashPayment(@RequestBody @Valid DateFromToDto param) {
-        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
+        ResponseDto responseDto = modelMapper.map(Response.class, ResponseDto.class);
         try {
             List<CashReceiptPayment> listResponse = serviceImpl
-                    .getListCashPayment(modelMapper.map(param, new BodyParameterFirst(
-                            param.getDateFrom(),
-                            param.getDateTo()).getClass()));
+                    .getListCashPayment(modelMapper.map(param, BodyParameterFirst.class));
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-            List<Object> listObject = new ArrayList<Object>();
-            for (CashReceiptPayment response : listResponse) {
-                listObject.add(response);
-            }
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.OK.value(),
+            List<Object> listObject = new ArrayList<>(listResponse);
+            ResourceResponse.responseDto(responseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
-            return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
+            return ResponseEntity.status(HttpStatus.OK).body(responseDto);
         } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
+            ResourceResponse.responseDto(responseDto, HttpStatus.EXPECTATION_FAILED.value(),
                     HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
-        }
-    }
-
-    @ExceptionHandler(HttpMessageNotReadableException.class)
-    private ResponseEntity<ResponseDto> HandleHttpMessageException(
-            HttpMessageNotReadableException exception) {
-        ResponseDto ResponseDto = modelMapper.map(Response.class, ResponseDto.class);
-        try {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.BAD_REQUEST.value(),
-                    HttpStatus.BAD_REQUEST.getReasonPhrase(), exception.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
-        } catch (Exception e) {
-            ResponseDto = ResourceResponse.ResponseDto(ResponseDto, HttpStatus.EXPECTATION_FAILED.value(),
-                    HttpStatus.EXPECTATION_FAILED.getReasonPhrase(), e.getMessage(), null);
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(ResponseDto);
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(responseDto);
         }
     }
 }

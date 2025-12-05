@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
-    List<Account> findByUserId(long UserId);
+    List<Account> findByUserId(long userId);
 
-    Account findByUserIdAndAccountNumber(long UserId, long AccountNumber);
+    Account findByUserIdAndAccountNumber(long userId, long accountNumber);
 
-    void deleteByUserId(long UserId);
+    void deleteByUserId(long userId);
 }

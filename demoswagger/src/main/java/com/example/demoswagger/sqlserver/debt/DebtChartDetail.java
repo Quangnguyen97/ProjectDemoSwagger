@@ -1,6 +1,7 @@
 package com.example.demoswagger.sqlserver.debt;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.sql.Date;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class DebtChartDetail {
 
     private String code;
@@ -26,19 +28,5 @@ public class DebtChartDetail {
 
     public DebtChartDetail() {
         super();
-    }
-
-    public DebtChartDetail(String code, String name, Date date, String begin, String incurred, String pay,
-                           String value, int type, int type2) {
-        super();
-        this.code = code;
-        this.name = name;
-        this.date = date;
-        this.begin = begin;
-        this.incurred = incurred;
-        this.pay = pay;
-        this.value = value;
-        this.type = type;
-        this.type2 = type2;
     }
 }

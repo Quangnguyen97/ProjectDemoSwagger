@@ -4,16 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Setter
+@Getter
 public class ResourceException extends RuntimeException {
 
-    @Getter
-    private String resourceName;
-    @Getter
-    private String fieldName;
-    @Getter
-    private Object fieldValue;
-
-    private String message;
+    private static final String MESSAGE_FORMAT = "%s have exception with %s : '%s";
 
     public ResourceException() {
         super();
@@ -21,12 +15,10 @@ public class ResourceException extends RuntimeException {
 
     public ResourceException(String message, Throwable cause) {
         super(message, cause);
-        this.message = message;
     }
 
     public ResourceException(String message) {
         super(message);
-        this.message = message;
     }
 
     public ResourceException(Throwable cause) {
@@ -34,16 +26,6 @@ public class ResourceException extends RuntimeException {
     }
 
     public ResourceException(String resourceName, String fieldName, Object fieldValue) {
-        super(String.format("%s have exception with %s : '%s'", resourceName, fieldName, fieldValue));
-        this.resourceName = resourceName;
-        this.fieldName = fieldName;
-        this.fieldValue = fieldValue;
-        this.message = String.format("%s have exception with %s : '%s'", resourceName, fieldName, fieldValue);
+        super(String.format(MESSAGE_FORMAT, resourceName, fieldName, fieldValue));
     }
-
-    @Override
-    public String getMessage() {
-        return message;
-    }
-
 }
