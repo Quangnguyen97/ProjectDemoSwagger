@@ -34,16 +34,13 @@ import java.util.List;
 
 @RestController
 @Api(tags = "Công nợ", description = "Công nợ API")
-public class DebtController {
-
-    @Autowired
-    private ModelMapper modelMapper;
+public class DebtController extends BaseController {
 
     @Autowired
     private DebtServiceImpl serviceImpl;
 
-    public DebtController(DebtServiceImpl serviceImpl) {
-        super();
+    public DebtController(ModelMapper modelMapper, DebtServiceImpl serviceImpl) {
+        super(modelMapper);
         this.serviceImpl = serviceImpl;
     }
 
@@ -107,7 +104,7 @@ public class DebtController {
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-List<Object> listObject = new ArrayList<>(listResponse);
+            List<Object> listObject = new ArrayList<>(listResponse);
             ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
@@ -157,7 +154,7 @@ List<Object> listObject = new ArrayList<>(listResponse);
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-List<Object> listObject = new ArrayList<>(listResponse);
+            List<Object> listObject = new ArrayList<>(listResponse);
             ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
@@ -179,7 +176,7 @@ List<Object> listObject = new ArrayList<>(listResponse);
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-List<Object> listObject = new ArrayList<>(listResponse);
+            List<Object> listObject = new ArrayList<>(listResponse);
             ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);
@@ -229,7 +226,7 @@ List<Object> listObject = new ArrayList<>(listResponse);
             if (listResponse.isEmpty()) {
                 throw new ResourceException("List " + HttpStatus.NOT_FOUND.getReasonPhrase());
             }
-List<Object> listObject = new ArrayList<>(listResponse);
+            List<Object> listObject = new ArrayList<>(listResponse);
             ResponseDto = ResourceResponse.responseDto(ResponseDto, HttpStatus.OK.value(),
                     HttpStatus.OK.getReasonPhrase(), "", listObject);
             return ResponseEntity.status(HttpStatus.OK).body(ResponseDto);

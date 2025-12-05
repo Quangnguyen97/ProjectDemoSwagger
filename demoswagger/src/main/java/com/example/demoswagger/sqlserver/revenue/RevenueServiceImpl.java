@@ -419,7 +419,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckDateFrom(String dateFrom) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, dateFrom)) {
                 return false;
             }
             if (ResourceValid.StrIsError(dateFrom)) {
@@ -435,7 +435,7 @@ public class RevenueServiceImpl implements RevenueService {
 
     private boolean CheckDateTo(String dateTo) {
         try {
-            if (ResourceValid.TypeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
+            if (ResourceValid.typeIsError(ResourceValid.typeOBJECT.STRING, dateTo)) {
                 return false;
             }
             if (ResourceValid.StrIsError(dateTo)) {

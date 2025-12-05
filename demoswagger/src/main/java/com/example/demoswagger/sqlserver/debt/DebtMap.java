@@ -20,10 +20,6 @@ public class DebtMap {
     private String codeType;
     private List<DebtMapDetail> detail;
 
-    public DebtMap() {
-        super();
-    }
-
     public DebtMap(int order, String code, String name, String value, String codeType) {
         super();
         this.order = order;

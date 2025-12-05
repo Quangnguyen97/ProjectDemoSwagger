@@ -14,10 +14,6 @@ public class CodeMapDetail {
     private Integer codeRest;
     private String countDetail;
 
-    public CodeMapDetail() {
-        super();
-    }
-
     public CodeMapDetail(int order, String codeType, String codeValue, String codeDescription, Integer codeRest,
                          String countDetail) {
         super();

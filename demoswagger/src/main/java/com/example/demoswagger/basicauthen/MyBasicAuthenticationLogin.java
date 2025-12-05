@@ -10,9 +10,6 @@ public class MyBasicAuthenticationLogin {
     private String user;
     private String pass;
 
-    public MyBasicAuthenticationLogin() {
-    }
-
     public MyBasicAuthenticationLogin(String user, String pass) {
         super();
         this.user = user;

@@ -13,8 +13,4 @@ public class DebtMapDetail {
     private String description;
 
     private String value;
-
-    public DebtMapDetail() {
-        super();
-    }
 }
