@@ -95,6 +95,9 @@ public class ToolElearning {
         String urlInput = scanner.nextLine();
         // Parse các tham số a, scoid, sesskey từ URL
         String aStart = getParamValue(urlInput, "a");
+        if (aStart == null) {
+            aStart = getParamValue(urlInput, "cm");
+        }
         String scoidStart = getParamValue(urlInput, "scoid");
         String sesskey = getParamValue(urlInput, "sesskey");
         logger.info("Nhập cookie (toàn bộ chuỗi Cookie từ trình duyệt hoặc request): ");

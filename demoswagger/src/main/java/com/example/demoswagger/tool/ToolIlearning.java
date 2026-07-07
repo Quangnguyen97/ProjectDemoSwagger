@@ -146,6 +146,9 @@ public class ToolIlearning {
 
         // Parse các tham số từ URL
         String aStart = getParamValue(urlInput, "a");
+        if (aStart == null) {
+            aStart = getParamValue(urlInput, "cm");
+        }
         String scoidStart = getParamValue(urlInput, "scoid");
         String sesskey = getParamValue(urlInput, "sesskey");
 
